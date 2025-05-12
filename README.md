@@ -1,3 +1,2 @@
 # Smart_Fridge
-czesc
-czesc
+tu bedzie dokumentacja
