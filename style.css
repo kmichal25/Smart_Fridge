@@ -1,1 +1,306 @@
+/* STYLE RÓZNYCH .HTML */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  
+}
 
+.top-bar {
+  background-color: #378BA4;
+  height: 67px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+
+.hamburger {
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-btn {
+  padding: 8px 14px;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.nav-btn.logout {
+  background-color: #D25757;
+  color: white;
+}
+
+/* LOGOWANIE */
+.logo-img {
+  height: 40px;
+  border-radius: 8px;
+}
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.login-box {
+  background-color: #ebebeb;
+  border-radius: 20px;
+  padding: 24px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.login-title {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.form-input {
+  width: 90%;
+  max-width: 300px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: none;
+  border-radius: 999px;
+  font-size: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-btn {
+  background-color: #81BECE;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 0;
+  width: 100%;
+  font-weight: 600;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.login-footer {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+.login-footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* DASHBOARD */
+.fridge-wrapper {
+  position: relative;
+  width: 90vw;
+  max-width: 523px;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  margin: 0 auto;
+}
+
+.fridge-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.product {
+  position: absolute;
+  width: 18%;
+  padding: 0.5vw;
+  border-radius: 0.7vw;
+  color: #fff;
+  font-size: 2vw;
+  line-height: 1.4;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+
+.product.green { background-color: #4CAF50; }
+.product.orange { background-color: #F57C00; }
+.product.red { background-color: #D32F2F; }
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  justify-content: center;
+}
+
+.extra-panel {
+  margin-top: 150px;
+  background-color: #ebebeb;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 12px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+
+.extra-panel .product {
+  position: relative;
+  width: 120px;
+  font-size: 14px;
+}
+
+.show-more-btn {
+  position: absolute;
+  background-color: #378BA4;
+  color: white;
+  padding: 6px 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.hidden {
+  display: none;
+}
+
+.fridge-and-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emoji {
+  font-size: 26px;  
+  display: block;
+  line-height: 1;
+}
+
+/* -------------------------------
+           RESPONSYWNOŚĆ
+----------------------------------*/
+
+/* ===== TELEFON ===== */
+@media (max-width: 767px) {
+  .nav-links {
+    position: absolute;
+    top: 67px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: #378BA4;
+    padding: 16px 0;
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+  .product {
+    font-size: 2.5vw;
+  }
+
+  .show-more-btn {
+    font-size: 2.5vw;
+  }
+}
+  
+/* ===== TABLET ===== */
+@media (min-width: 768px) {
+  .login-box {
+    max-width: 500px;
+    padding: 32px;
+  }
+
+  .form-input {
+    max-width: 400px;
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .product {
+    font-size: 1.5vw;
+  }
+  
+  .show-more-btn {
+    font-size: 1.5vw;
+  }
+
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 1024px) {
+  .login-wrapper {
+    padding: 80px 0;
+  }
+
+  .login-box {
+    max-width: 600px;
+    padding: 40px;
+  }
+
+  .form-input {
+    max-width: 500px;
+    font-size: 18px;
+  }
+
+  .login-title {
+    font-size: 24px;
+  }
+
+  .product {
+    font-size: 1vw;
+  }
+
+  .show-more-btn {
+    font-size: 1vw;
+  }
+
+  .layout-wrapper {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+  }
+ 
+  .fridge-and-panel {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .extra-panel {
+    margin-top: 0;
+  }
+}
