@@ -1,0 +1,244 @@
+.frame {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .frame .div {
+    background-color: #ffffff;
+    width: 390px;
+    height: 844px;
+    position: relative;
+  }
+  
+  .frame .TOP {
+    position: absolute;
+    width: 390px;
+    height: 67px;
+    top: 0;
+    left: 0;
+    background-color: #378ba4;
+  }
+  
+  .frame .overlap-group {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 14px;
+    left: 341px;
+    background-color: #ffffff;
+    border-radius: 10px;
+  }
+  
+  .frame .group {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .frame .rectangle {
+    width: 20px;
+    height: 3px;
+    top: 0;
+    background-color: #378ba4;
+    border-radius: 20px;
+    position: absolute;
+    left: 0;
+  }
+  
+  .frame .rectangle-2 {
+    width: 20px;
+    height: 3px;
+    top: 8px;
+    background-color: #378ba4;
+    border-radius: 20px;
+    position: absolute;
+    left: 0;
+  }
+  
+  .frame .rectangle-3 {
+    width: 20px;
+    height: 3px;
+    top: 17px;
+    background-color: #378ba4;
+    border-radius: 20px;
+    position: absolute;
+    left: 0;
+  }
+  
+  .frame .smartfridge-logo {
+    position: absolute;
+    width: 109px;
+    height: 38px;
+    top: 15px;
+    left: 4px;
+    object-fit: cover;
+  }
+  
+  .frame .WICEJ-b {
+    position: absolute;
+    width: 235px;
+    height: 27px;
+    top: 728px;
+    left: 73px;
+  }
+  
+  .frame .overlap {
+    position: relative;
+    width: 233px;
+    height: 27px;
+    background-color: #5bc9ea;
+    border-radius: 19px;
+  }
+  
+  .frame .text-wrapper {
+    position: absolute;
+    width: 61px;
+    top: 0;
+    left: 91px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .frame .PRZEPIS {
+    position: absolute;
+    width: 347px;
+    height: 122px;
+    top: 286px;
+    left: 23px;
+  }
+  
+  .frame .overlap-2 {
+    position: relative;
+    width: 345px;
+    height: 122px;
+  }
+  
+  .frame .rectangle-4 {
+    width: 343px;
+    height: 122px;
+    top: 0;
+    background-color: #ececec;
+    border-radius: 19px;
+    position: absolute;
+    left: 0;
+  }
+  
+  .frame .ZOBACZ-PRZEPIS-b {
+    position: absolute;
+    width: 322px;
+    height: 30px;
+    top: 79px;
+    left: 23px;
+  }
+  
+  .frame .overlap-group-2 {
+    position: relative;
+    width: 320px;
+    height: 30px;
+  }
+  
+  .frame .rounded-rectangle {
+    position: absolute;
+    width: 119px;
+    height: 21px;
+    top: 0;
+    left: 0;
+    background-color: #5bc9ea;
+    border-radius: 19px;
+  }
+  
+  .frame .text-wrapper-2 {
+    position: absolute;
+    width: 311px;
+    top: 3px;
+    left: 9px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #020202;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .frame .text-wrapper-3 {
+    position: absolute;
+    width: 237px;
+    top: 25px;
+    left: 23px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #378ba4;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .frame .p {
+    position: absolute;
+    width: 237px;
+    top: 52px;
+    left: 23px;
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .frame .image {
+    position: absolute;
+    width: 104px;
+    height: 69px;
+    top: 25px;
+    left: 226px;
+    object-fit: cover;
+  }
+  
+  .frame .overlap-wrapper {
+    top: 431px;
+    position: absolute;
+    width: 347px;
+    height: 122px;
+    left: 23px;
+  }
+  
+  .frame .overlap-group-wrapper {
+    top: 576px;
+    position: absolute;
+    width: 347px;
+    height: 122px;
+    left: 23px;
+  }
+  
+  .frame .div-wrapper {
+    top: 141px;
+    position: absolute;
+    width: 347px;
+    height: 122px;
+    left: 23px;
+  }
+  
+  .frame .text-wrapper-4 {
+    position: absolute;
+    width: 237px;
+    top: 91px;
+    left: 28px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #378ba4;
+    font-size: 22px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
