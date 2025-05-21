@@ -45,6 +45,173 @@ body {
   color: white;
 }
 
+/* RECIPE & PRODUCT */
+.product-card {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.product-card h2 {
+  color: #378BA4;
+  margin-top: 0;
+}
+
+.progress-bar {
+  background-color: #ddd;
+  border-radius: 999px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: #66CCF2;
+  color: white;
+  padding: 6px 12px;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.nutrition {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin: 16px 0;
+  color: #378BA4;
+}
+
+.btn-primary {
+  background-color: #66CCF2;
+  color: black;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #66CCF2;
+  color: black;
+  border: none;
+  padding: 6px 12px;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.recipe-section {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 0 16px;
+}
+
+.recipe-section h2 {
+  color: #378BA4;
+  margin-bottom: 20px;
+}
+
+.recipe-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ebebeb;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.recipe-card img {
+  width: 100px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.recipe-text h3 {
+  margin: 0;
+  color: #378BA4;
+}
+
+.recipe-text p {
+  margin: 4px 0;
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.card {
+  background-color: #ebebeb;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  color: #378BA4;
+  margin: 0;
+}
+
+.header img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.section-title {
+  color: #378BA4;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.steps {
+  padding-left: 20px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 24px;
+  color: #378BA4;
+  font-weight: bold;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+.button {
+  background-color: #65C9F0;
+  padding: 12px 24px;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
 /* LOGOWANIE */
 .logo-img {
   height: 40px;
@@ -224,6 +391,7 @@ body {
   .hamburger {
     display: block;
   }
+
   .product {
     font-size: 2.5vw;
   }
@@ -231,10 +399,80 @@ body {
   .show-more-btn {
     font-size: 2.5vw;
   }
+
+  .container {
+    padding: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
+  .header img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+
+  .footer {
+    font-size: 20px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .product-card, .recipe-section {
+    padding: 16px;
+    margin: 16px;
+  }
+
+  .nutrition {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .recipe-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .recipe-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .btn-primary, .btn-secondary {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .recipe-text h3 {
+    font-size: 16px;
+  }
+
+  .recipe-text p {
+    font-size: 14px;
+  }
+
 }
   
 /* ===== TABLET ===== */
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .login-box {
     max-width: 500px;
     padding: 32px;
@@ -255,6 +493,62 @@ body {
   .show-more-btn {
     font-size: 1.5vw;
   }
+
+  .nav-links {
+    position: absolute;
+    top: 67px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: #378BA4;
+    padding: 16px 0;
+    display: none;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+  .container {
+    padding: 32px;
+  }
+
+  .header h2 {
+    font-size: 24px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .footer {
+    font-size: 22px;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+
+  .product-card {
+    max-width: 90%;
+  }
+
+  .recipe-card img {
+    width: 120px;
+  }
+
+  .nutrition div {
+    font-size: 14px;
+  }
+
+  .btn-primary, .btn-secondary {
+    font-size: 15px;
+  }
+
 
 }
 
@@ -303,4 +597,47 @@ body {
   .extra-panel {
     margin-top: 0;
   }
+
+  .container {
+    padding: 40px;
+  }
+
+  .header h2 {
+    font-size: 26px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .footer {
+    font-size: 24px;
+  }
+
+  .button {
+    font-size: 18px;
+    padding: 14px 28px;
+  }
+
+  .product-card {
+    max-width: 500px;
+  }
+
+  .recipe-card {
+    flex-direction: row;
+  }
+
+  .recipe-card img {
+    width: 100px;
+  }
+
+  .nutrition div {
+    font-size: 16px;
+  }
+
+  .btn-primary, .btn-secondary {
+    font-size: 16px;
+  }
+
 }
+
