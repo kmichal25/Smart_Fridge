@@ -1,0 +1,642 @@
+/* STYLE RÓZNYCH .HTML */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    
+  }
+  
+  .top-bar {
+    background-color: #378BA4;
+    height: 67px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .hamburger {
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .nav-btn {
+    padding: 8px 14px;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .nav-btn.logout {
+    background-color: #D25757;
+    color: white;
+  }
+  
+  /* RECIPE & PRODUCT */
+  .product-card {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  .product-card h2 {
+    color: #378BA4;
+    margin-top: 0;
+  }
+  
+  .progress-bar {
+    background-color: #ddd;
+    border-radius: 999px;
+    margin: 10px 0;
+    overflow: hidden;
+  }
+  
+  .progress {
+    background-color: #66CCF2;
+    color: white;
+    padding: 6px 12px;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 999px;
+    width: fit-content;
+  }
+  
+  .nutrition {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin: 16px 0;
+    color: #378BA4;
+  }
+  
+  .btn-primary {
+    background-color: #66CCF2;
+    color: black;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .btn-secondary {
+    background-color: #66CCF2;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .recipe-section {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 0 16px;
+  }
+  
+  .recipe-section h2 {
+    color: #378BA4;
+    margin-bottom: 20px;
+  }
+  
+  .recipe-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ebebeb;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    gap: 16px;
+  }
+  
+  .recipe-card img {
+    width: 100px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  
+  .recipe-text h3 {
+    margin: 0;
+    color: #378BA4;
+  }
+  
+  .recipe-text p {
+    margin: 4px 0;
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .card {
+    background-color: #ebebeb;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header h2 {
+    color: #378BA4;
+    margin: 0;
+  }
+  
+  .header img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .section-title {
+    color: #378BA4;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .steps {
+    padding-left: 20px;
+  }
+  
+  .footer {
+    text-align: center;
+    font-size: 24px;
+    color: #378BA4;
+    font-weight: bold;
+    margin-top: 20px;
+    font-style: italic;
+  }
+  
+  .button {
+    background-color: #65C9F0;
+    padding: 12px 24px;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  /* LOGOWANIE */
+  .logo-img {
+    height: 40px;
+    border-radius: 8px;
+  }
+  
+  .login-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px;
+  }
+  
+  .login-box {
+    background-color: #ebebeb;
+    border-radius: 20px;
+    padding: 24px;
+    width: 100%;
+    max-width: 360px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .login-title {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .form-input {
+    width: 90%;
+    max-width: 300px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border: none;
+    border-radius: 999px;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .login-btn {
+    background-color: #81BECE;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 0;
+    width: 100%;
+    font-weight: 600;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+  
+  .login-footer {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  
+  .login-footer a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  
+  /* DASHBOARD */
+  .fridge-wrapper {
+    position: relative;
+    width: 90vw;
+    max-width: 523px;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    margin: 0 auto;
+  }
+  
+  .fridge-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  
+  .product {
+    position: absolute;
+    width: 18%;
+    padding: 0.5vw;
+    border-radius: 0.7vw;
+    color: #fff;
+    font-size: 2vw;
+    line-height: 1.4;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 2;
+  }
+  
+  .product.green { background-color: #4CAF50; }
+  .product.orange { background-color: #F57C00; }
+  .product.red { background-color: #D32F2F; }
+  
+  .layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  .extra-panel {
+    margin-top: 150px;
+    background-color: #ebebeb;
+    padding: 10px;
+    gap: 10px;
+    border-radius: 12px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+  }
+  
+  .extra-panel .product {
+    position: relative;
+    width: 120px;
+    font-size: 14px;
+  }
+  
+  .show-more-btn {
+    position: absolute;
+    background-color: #378BA4;
+    color: white;
+    padding: 6px 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 3;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .fridge-and-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .emoji {
+    font-size: 26px;  
+    display: block;
+    line-height: 1;
+  }
+  
+  /* -------------------------------
+             RESPONSYWNOŚĆ
+  ----------------------------------*/
+  
+  /* ===== TELEFON ===== */
+  @media (max-width: 767px) {
+    .nav-links {
+      position: absolute;
+      top: 67px;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      background-color: #378BA4;
+      padding: 16px 0;
+      display: none;
+    }
+  
+    .nav-links.open {
+      display: flex;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  
+    .product {
+      font-size: 2.5vw;
+    }
+  
+    .show-more-btn {
+      font-size: 2.5vw;
+    }
+  
+    .container {
+      padding: 16px;
+    }
+  
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .header h2 {
+      font-size: 20px;
+    }
+  
+    .header p {
+      font-size: 14px;
+    }
+  
+    .header img {
+      width: 70px;
+      height: 70px;
+    }
+  
+    .section-title {
+      font-size: 16px;
+    }
+  
+    .footer {
+      font-size: 20px;
+    }
+  
+    .button {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+  
+    .product-card, .recipe-section {
+      padding: 16px;
+      margin: 16px;
+    }
+  
+    .nutrition {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .recipe-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .recipe-card img {
+      width: 100%;
+      height: auto;
+    }
+  
+    .btn-primary, .btn-secondary {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .recipe-text h3 {
+      font-size: 16px;
+    }
+  
+    .recipe-text p {
+      font-size: 14px;
+    }
+  
+  }
+    
+  /* ===== TABLET ===== */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .login-box {
+      max-width: 500px;
+      padding: 32px;
+    }
+  
+    .form-input {
+      max-width: 400px;
+    }
+  
+    .login-title {
+      font-size: 22px;
+    }
+  
+    .product {
+      font-size: 1.5vw;
+    }
+    
+    .show-more-btn {
+      font-size: 1.5vw;
+    }
+  
+    .nav-links {
+      position: absolute;
+      top: 67px;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      background-color: #378BA4;
+      padding: 16px 0;
+      display: none;
+    }
+    .nav-links.open {
+      display: flex;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+    .container {
+      padding: 32px;
+    }
+  
+    .header h2 {
+      font-size: 24px;
+    }
+  
+    .section-title {
+      font-size: 18px;
+    }
+  
+    .footer {
+      font-size: 22px;
+    }
+  
+    .button {
+      font-size: 16px;
+      padding: 12px 24px;
+    }
+  
+    .product-card {
+      max-width: 90%;
+    }
+  
+    .recipe-card img {
+      width: 120px;
+    }
+  
+    .nutrition div {
+      font-size: 14px;
+    }
+  
+    .btn-primary, .btn-secondary {
+      font-size: 15px;
+    }
+  
+  
+  }
+  
+  /* ===== DESKTOP ===== */
+  @media (min-width: 1024px) {
+    .login-wrapper {
+      padding: 80px 0;
+    }
+  
+    .login-box {
+      max-width: 600px;
+      padding: 40px;
+    }
+  
+    .form-input {
+      max-width: 500px;
+      font-size: 18px;
+    }
+  
+    .login-title {
+      font-size: 24px;
+    }
+  
+    .product {
+      font-size: 1vw;
+    }
+  
+    .show-more-btn {
+      font-size: 1vw;
+    }
+  
+    .layout-wrapper {
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
+    }
+   
+    .fridge-and-panel {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 16px;
+    }
+  
+    .extra-panel {
+      margin-top: 0;
+    }
+  
+    .container {
+      padding: 40px;
+    }
+  
+    .header h2 {
+      font-size: 26px;
+    }
+  
+    .section-title {
+      font-size: 20px;
+    }
+  
+    .footer {
+      font-size: 24px;
+    }
+  
+    .button {
+      font-size: 18px;
+      padding: 14px 28px;
+    }
+  
+    .product-card {
+      max-width: 500px;
+    }
+  
+    .recipe-card {
+      flex-direction: row;
+    }
+  
+    .recipe-card img {
+      width: 100px;
+    }
+  
+    .nutrition div {
+      font-size: 16px;
+    }
+  
+    .btn-primary, .btn-secondary {
+      font-size: 16px;
+    }
+  
+  }
