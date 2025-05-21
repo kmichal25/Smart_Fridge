@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta charset="utf-8" />
     <link rel="stylesheet" href="globals.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+     <!-- pasek górny -->
+    <header class="top-bar">
+      <img src="SmartFridgelogo.jpg" alt="Logo" class="logo-img" />
+  
+      <!-- hamburger (dla małych urządzeń)) -->
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+  
+      <!-- przyciski menu -->
+      <nav class="nav-links" id="navLinks">
+        <button class="nav-btn">Twoja lodówka</button>
+        <button class="nav-btn">Dodaj produkt</button>
+        <button class="nav-btn">Dostępne przepisy</button>
+        <button class="nav-btn">Powiadomienia</button>
+        <button class="nav-btn logout">Wyloguj się</button>
+      </nav>
+    </header>
     <div class="iphone">
       <div class="div">
-        <div class="pasek-gorny">
-          <img class="smartfridge-logo" src="img/smartfridge-logo-1.png" />
-          <div class="hamburger">
-            <div class="group">
-              <div class="rectangle"></div>
-              <div class="rectangle-2"></div>
-              <div class="rectangle-3"></div>
-            </div>
-          </div>
-        </div>
         <div class="wykonanie">
           <div class="overlap-group">
             <p class="przygotuj-naczynie">
@@ -53,5 +60,10 @@
         </div>
       </div>
     </div>
+     <script>
+        function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+        }
+    </script>
   </body>
 </html>
