@@ -1,85 +1,84 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-     <!-- pasek górny -->
-   <header class="top-bar">
-  <img src="SmartFridgelogo.jpg" alt="Logo" class="logo-img" />
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <nav class="nav-links" id="navLinks">
-    <button class="nav-btn">Twoja lodówka</button>
-    <button class="nav-btn">Dodaj produkt</button>
-    <button class="nav-btn">Dostępne przepisy</button>
-    <button class="nav-btn">Powiadomienia</button>
-    <button class="nav-btn logout">Wyloguj się</button>
-  </nav>
-</header> <!-- TERAZ poprawnie zamknięte -->
-    <div class="frame">
-      <div class="div">
-        <div class="group"></div>
-        <div class="overlap-group-wrapper">
-          <div class="overlap-group">
-            <div class="rounded-rectangle"></div>
-            <div class="text-wrapper">Inne przepisy</div>
-          </div>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8"><script>/* <![CDATA[ */ ringDataLayer = {"context":{"variant":{"accelerator":"ZG93bmxvYWQucG9jenRhLm9uZXQucGw6OnByb2Rfd2l0aF91c2VyX2RhdGFfZG93bmxvYWRlcl9pbl9hd3NfMg=="},"id":{"website":"9481b0b7-7c3d-463b-8f3c-9de5c8289e21"}}}; /* ]]> */</script><script>/* <![CDATA[ */ accConf = {"events":{"endpointPaths":["/a8f4d8cd95e164917035b64b867a45dd"]}}; /* ]]> */</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twoja lodówka</title>
+  <link rel="stylesheet" href="style.css">
+</head> 
+
+<body>
+
+    <!-- pasek górny -->
+    <header class="top-bar">
+      <img src="SmartFridgelogo.jpg" alt="Logo" class="logo-img" />
+  
+      <!-- hamburger (dla małych urządzeń)) -->
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+  
+      <!-- przyciski menu -->
+      <nav class="nav-links" id="navLinks">
+        <button class="nav-btn">Twoja lodówka</button>
+        <button class="nav-btn">Dodaj produkt</button>
+        <button class="nav-btn">Dostępne przepisy</button>
+        <button class="nav-btn">Powiadomienia</button>
+        <button class="nav-btn logout">Wyloguj się</button>
+      </nav>
+    </header>
+    
+    <div class="product-card">
+        <h2>Jogurt naturalny</h2>
+        <p><strong>Ilość:</strong> 2 szt.<br>
+           <strong>Gramatura:</strong> 300 g<br>
+           <strong>Data ważności:</strong> 2025-05-15</p>
+        <div class="progress-bar">
+          <div class="progress">3 dni do końca</div>
         </div>
-        <div class="group-2">
-          <div class="overlap">
-            <div class="rounded-rectangle-2"></div>
-            <div class="text-wrapper-2">Zobacz przepis</div>
-            <div class="text-wrapper-3">Smoothie z bananem</div>
-            <p class="p">Czas: 10 minut | Składników: 4</p>
-            <img class="image" src="img/image-1.png" />
-          </div>
-          <div class="text-wrapper-4">Przepisy z jogurtem</div>
+      
+        <div class="nutrition">
+          <div><strong>120</strong><br>kcal/100g</div>
+          <div><strong>5g</strong><br>białko</div>
+          <div><strong>4g</strong><br>tłuszcze</div>
+          <div><strong>12g</strong><br>węglowodany</div>
         </div>
-        <div class="overlap-wrapper">
-          <div class="overlap-2">
-            <div class="rectangle"></div>
-            <div class="rounded-rectangle-3"></div>
-            <div class="element-kcal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 120 <br />kcal/100g</div>
-            <div class="element-bia-ko">&nbsp;&nbsp; 5g<br />białko</div>
-            <div class="element-w-glowodany">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12g<br />węglowodany
-            </div>
-            <div class="element-t-uszcze">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4g<br />tłuszcze</div>
-            <div class="rounded-rectangle-4"></div>
-            <div class="rounded-rectangle-5"></div>
-            <div class="text-wrapper-5">Jogurt naturalny</div>
-            <div class="text-wrapper-6">Zjedzono/usuń</div>
-            <p class="ilo-szt"><span class="span">Ilość: </span> <span class="text-wrapper-7">2 szt.</span></p>
-            <p class="data-wa-no-ci">
-              <span class="span">Data ważności: </span> <span class="text-wrapper-7">2025-05-15</span>
-            </p>
-            <div class="text-wrapper-8">3 dni do końca</div>
-            <p class="gramatura-g"><span class="span">Gramatura: </span> <span class="text-wrapper-7">300 g</span></p>
-          </div>
-        </div>
-        <div class="div-wrapper">
-          <div class="overlap-3">
-            <div class="group-3">
-              <div class="overlap-group-2">
-                <div class="rectangle-2"></div>
-                <div class="rounded-rectangle-6"></div>
-                <div class="text-wrapper-9">Zobacz przepis</div>
-                <div class="text-wrapper-10">Tzatziki domowe</div>
-                <p class="text-wrapper-11">Czas: 15 minut | Składników: 3</p>
-              </div>
-            </div>
-            <img class="img" src="img/image-2.png" />
-          </div>
-        </div>
+      
+        <button class="btn-primary">Zjedzono/usuń</button>
       </div>
-    </div>
+      
+      <div class="recipe-section">
+        <h2>Przepisy z jogurtem</h2>
+      
+        <div class="recipe-card">
+          <div class="recipe-text">
+            <h3>Smoothie z bananem</h3>
+            <p>Czas: 10 minut | Składników: 4</p>
+            <button class="btn-secondary">Zobacz przepis</button>
+          </div>
+          <img src="smoothie.jpg" alt="Smoothie z bananem">
+        </div>
+      
+        <div class="recipe-card">
+          <div class="recipe-text">
+            <h3>Tzatziki domowe</h3>
+            <p>Czas: 15 minut | Składników: 3</p>
+            <button class="btn-secondary">Zobacz przepis</button>
+          </div>
+          <img src="tzatziki.jpg" alt="Tzatziki domowe">
+        </div>
+      
+        <button class="btn-primary full-width">Inne przepisy</button>
+      </div>
+      
+  
+ 
+    
+    <!-- małe przydatności do testów -->  
     <script>
         function toggleMenu() {
         document.getElementById('navLinks').classList.toggle('open');
         }
+
     </script>
-  </body>
+
+</body>
 </html>
