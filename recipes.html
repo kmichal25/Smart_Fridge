@@ -1,85 +1,73 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="frame">
-      <div class="div">
-        <div class="TOP">
-          <div class="overlap-group">
-            <div class="group">
-              <div class="rectangle"></div>
-              <div class="rectangle-2"></div>
-              <div class="rectangle-3"></div>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Losowe przepisy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- pasek górny -->
+  <header class="top-bar">
+    <img src="SmartFridgelogo.jpg" alt="Logo" class="logo-img" />
+
+    <!-- hamburger (dla małych urządzeń)) -->
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <!-- przyciski menu -->
+    <nav class="nav-links" id="navLinks">
+      <button class="nav-btn">Twoja lodówka</button>
+      <button class="nav-btn">Dodaj produkt</button>
+      <button class="nav-btn">Dostępne przepisy</button>
+      <button class="nav-btn">Powiadomienia</button>
+      <button class="nav-btn logout">Wyloguj się</button>
+    </nav>
+  </header>
+    <div class="recipe-section">
+        <h2>Przepisy</h2>
+
+        <div class="recipe-card">
+            <div class="recipe-text">
+                <h3>Smoothie z bananem</h3>
+                <p>Czas: 10 minut | Składników: 4</p>
+                <button class="btn-secondary">Zobacz przepis</button>
             </div>
-          </div>
-          <img class="smartfridge-logo" src="img/smartfridge-logo-1.png" />
+            <img src="banana-smoothie.jpg" alt="Smoothie z bananem">
         </div>
-        <div class="WICEJ-b">
-          <div class="overlap"><div class="text-wrapper">Więcej</div></div>
-        </div>
-        <div class="PRZEPIS">
-          <div class="overlap-2">
-            <div class="rectangle-4"></div>
-            <div class="ZOBACZ-PRZEPIS-b">
-              <div class="overlap-group-2">
-                <div class="rounded-rectangle"></div>
-                <div class="text-wrapper-2">Zobacz przepis</div>
-              </div>
+
+        <div class="recipe-card">
+            <div class="recipe-text">
+                <h3>Smoothie z bananem</h3>
+                <p>Czas: 10 minut | Składników: 4</p>
+                <button class="btn-secondary">Zobacz przepis</button>
             </div>
-            <div class="text-wrapper-3">Smoothie z bananem</div>
-            <p class="p">Czas: 10 minut | Składników: 4</p>
-            <img class="image" src="img/image-1.png" />
-          </div>
+            <img src="banana-smoothie.jpg" alt="Smoothie z bananem">
         </div>
-        <div class="overlap-wrapper">
-          <div class="overlap-2">
-            <div class="rectangle-4"></div>
-            <div class="ZOBACZ-PRZEPIS-b">
-              <div class="overlap-group-2">
-                <div class="rounded-rectangle"></div>
-                <div class="text-wrapper-2">Zobacz przepis</div>
-              </div>
+
+        <div class="recipe-card">
+            <div class="recipe-text">
+                <h3>Smoothie z bananem</h3>
+                <p>Czas: 10 minut | Składników: 4</p>
+                <button class="btn-secondary">Zobacz przepis</button>
             </div>
-            <div class="text-wrapper-3">Smoothie z bananem</div>
-            <p class="p">Czas: 10 minut | Składników: 4</p>
-            <img class="image" src="img/image-1-3.png" />
-          </div>
+            <img src="banana-smoothie.jpg" alt="Smoothie z bananem">
         </div>
-        <div class="overlap-group-wrapper">
-          <div class="overlap-2">
-            <div class="rectangle-4"></div>
-            <div class="ZOBACZ-PRZEPIS-b">
-              <div class="overlap-group-2">
-                <div class="rounded-rectangle"></div>
-                <div class="text-wrapper-2">Zobacz przepis</div>
-              </div>
+
+        <div class="recipe-card">
+            <div class="recipe-text">
+                <h3>Smoothie z bananem</h3>
+                <p>Czas: 10 minut | Składników: 4</p>
+                <button class="btn-secondary">Zobacz przepis</button>
             </div>
-            <div class="text-wrapper-3">Smoothie z bananem</div>
-            <p class="p">Czas: 10 minut | Składników: 4</p>
-            <img class="image" src="img/image.png" />
-          </div>
+            <img src="banana-smoothie.jpg" alt="Smoothie z bananem">
         </div>
-        <div class="div-wrapper">
-          <div class="overlap-2">
-            <div class="rectangle-4"></div>
-            <div class="ZOBACZ-PRZEPIS-b">
-              <div class="overlap-group-2">
-                <div class="rounded-rectangle"></div>
-                <div class="text-wrapper-2">Zobacz przepis</div>
-              </div>
-            </div>
-            <div class="text-wrapper-3">Smoothie z bananem</div>
-            <p class="p">Czas: 10 minut | Składników: 4</p>
-            <img class="image" src="img/image-1-2.png" />
-          </div>
-        </div>
-        <div class="text-wrapper-4">Losowe przepisy</div>
-      </div>
+
+        <button class="button full-width">Więcej</button>
     </div>
-  </body>
+    <script>
+      function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+      }
+  </script>
+</body>
 </html>
