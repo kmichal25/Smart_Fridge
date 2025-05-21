@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+     <!-- pasek górny -->
+   <header class="top-bar">
+  <img src="SmartFridgelogo.jpg" alt="Logo" class="logo-img" />
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <nav class="nav-links" id="navLinks">
+    <button class="nav-btn">Twoja lodówka</button>
+    <button class="nav-btn">Dodaj produkt</button>
+    <button class="nav-btn">Dostępne przepisy</button>
+    <button class="nav-btn">Powiadomienia</button>
+    <button class="nav-btn logout">Wyloguj się</button>
+  </nav>
+</header> <!-- TERAZ poprawnie zamknięte -->
     <div class="frame">
       <div class="div">
         <div class="group"></div>
@@ -28,7 +40,6 @@
         </div>
         <div class="overlap-wrapper">
           <div class="overlap-2">
-            <img class="text-on-a-path" src="img/text-on-a-path.svg" />
             <div class="rectangle"></div>
             <div class="rounded-rectangle-3"></div>
             <div class="element-kcal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 120 <br />kcal/100g</div>
@@ -65,5 +76,10 @@
         </div>
       </div>
     </div>
+    <script>
+        function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+        }
+    </script>
   </body>
 </html>

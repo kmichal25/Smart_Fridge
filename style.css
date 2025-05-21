@@ -55,10 +55,12 @@ body {
 
 .frame .div {
   background-color: #ffffff;
+  display: flex;
   overflow: hidden;
   width: 390px;
   height: 844px;
   position: relative;
+  padding: 0 16px;
 }
 
 .frame .group {
