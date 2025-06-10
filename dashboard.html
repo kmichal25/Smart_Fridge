@@ -19,99 +19,34 @@
       <!-- przyciski menu -->
       <nav class="nav-links" id="navLinks">
         <button class="nav-btn">Twoja lodówka</button>
-        <button class="nav-btn">Dodaj produkt</button>
+        <button class="nav-btn" id="goToAddProduct">Dodaj produkt</button>
         <button class="nav-btn">Dostępne przepisy</button>
         <button class="nav-btn">Powiadomienia</button>
         <button class="nav-btn logout">Wyloguj się</button>
       </nav>
     </header>
-    
-  
+
    <div class="layout-wrapper">
    <div class="fridge-and-panel">
-
-        <div class="fridge-wrapper">
-        <img src="fridge.jpg" alt="Fridge" class="fridge-img" />
-
-        <!-- przykładowe produkty w lodówce (na grafice) - krótki termin przydatnośći -->
-        <div class="product red" style="top: 22%; left: 5%;">
-            <span class="emoji">🍌</span><strong>Banan</strong><br>200g
-          </div>
-          <div class="product red" style="top: 22%; left: 30%;">
-            <span class="emoji">🧈</span><strong>Twaróg</strong><br>150g
-          </div>
-          <div class="product red" style="top: 34%; left: 5%;">
-            <span class="emoji">🥛</span><strong>Mleko</strong><br>30g
-          </div>
-          <div class="product red" style="top: 34%; left: 30%;">
-            <span class="emoji">🧀</span><strong>Ser żółty</strong><br>130g
-          </div>
-          <div class="product red" style="top: 46%; left: 5%;">
-            <span class="emoji">🥬</span><strong>Sałata</strong><br>50g
-          </div>
-          <div class="product orange" style="top: 46%; left: 30%;">
-            <span class="emoji">🍅</span><strong>Pomidor</strong><br>100g
-          </div>
-          
-
-        <button class="show-more-btn" onclick="toggleExtra()" style="top: 61%; left: 21%;">Więcej</button>
-    </div>
-    </div>
-         <!-- przykładowe produkty (po naciśnięciu "więcej") - długi termin przydatnośći -->
-         <div class="extra-panel hidden" id="extraPanel">
-              <div class="product green">
-                <span class="emoji">🥒</span><strong>Ogórek</strong><br>150g
-              </div>
-              
-              <div class="product green">
-                <span class="emoji">🍓</span><strong>Truskawka</strong><br>150g
-              </div>
-
-              <div class="product green">
-                <span class="emoji">🥩</span><strong>Mięso wieprzowe</strong><br>150g
-              </div>
-
-              <div class="product green">
-                <span class="emoji">🥕</span><strong>Marchew</strong><br>120g
-              </div>
-              
-              <div class="product green">
-                <span class="emoji">🍇</span><strong>Winogrona</strong><br>100g
-              </div>
-              
-              <div class="product green">
-                <span class="emoji">🥦</span><strong>Brokuł</strong><br>130g
-              </div>
-              
-              <div class="product green">
-                <span class="emoji">🍍</span><strong>Ananas</strong><br>180g
-              </div>
-              
-              <div class="product green">
-                <span class="emoji">🍎</span><strong>Jabłko</strong><br>160g
-              </div>
-              
-              <div class="product green">
-                <span class="emoji">🌽</span><strong>Kukurydza</strong><br>90g
-              </div>
-              
-              <div class="product green">
-                <span class="emoji">🥔</span><strong>Ziemniak</strong><br>200g
-              </div>
-              
-        </div>
+    <div class="fridge-wrapper">
+      
+      <div class="search-container">
+        <input type="text" id="filterInput" placeholder="🔍 Wyszukaj produkt..." />
+        <input type="number" id="gramInput" placeholder="💪 Max gramatura [g]" min="0" />
+      </div>
+      
+      
+      <img src="fridge.jpg" alt="Fridge" class="fridge-img" />
     
+      <!-- produkty zostaną dodane tutaj -->
+      <button class="show-more-btn" onclick="toggleExtra()" style="top: 61%; left: 21%;">Więcej</button>
+    </div>
     
-    <!-- małe przydatności do testów -->  
-    <script>
-        function toggleMenu() {
-        document.getElementById('navLinks').classList.toggle('open');
-        }
-
-        function toggleExtra() {
-        document.getElementById('extraPanel').classList.toggle('hidden');
-        }
-    </script>
+    <div class="extra-panel hidden" id="extraPanel">
+      <!-- nadmiarowe produkty zostaną dodane tutaj -->
+    </div>
+   </div>
+    <script src="dashboard.js"></script>
 
 </body>
 </html>

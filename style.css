@@ -276,13 +276,48 @@ body {
 }
 
 /* DASHBOARD */
+#filterInput,
+#gramInput {
+  width: 280px;
+  padding: 8px 15px;
+  border-radius: 25px;
+  border: 2px solid #ccc;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s;
+  background-color: white;
+}
+
+#gramInput:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 5px auto 0px auto;
+  width: 100%;
+  max-width: 480px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+
+#filterInput:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
 .fridge-wrapper {
   position: relative;
   width: 90vw;
   max-width: 523px;
   height: auto;
   aspect-ratio: 2 / 3;
-  margin: 0 auto;
 }
 
 .fridge-img {
@@ -293,7 +328,7 @@ body {
 }
 
 .product {
-  position: absolute;
+  position: relative;
   width: 18%;
   padding: 0.5vw;
   border-radius: 0.7vw;
@@ -312,10 +347,12 @@ body {
 
 .layout-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: center;
+  flex-wrap: wrap; /* dla responsywności */
+  gap: 24px;
+  padding: 20px;
 }
 
 .extra-panel {
@@ -360,11 +397,37 @@ body {
   align-items: center;
 }
 
-.emoji {
-  font-size: 26px;  
-  display: block;
-  line-height: 1;
+
+.delete-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: white;
+  border: 1.5px solid red;
+  border-radius: 50%;
+  color: red;
+  font-weight: bold;
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+  line-height: 14px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
+
+.delete-btn:hover {
+  background-color: red;
+  color: white;
+}
+
+
+.delete-btn:hover {
+  background-color: red;
+  color: white;
+}
+
 
 /* -------------------------------
            RESPONSYWNOŚĆ
@@ -397,6 +460,10 @@ body {
   }
 
   .show-more-btn {
+    font-size: 2.5vw;
+  }
+
+  .delete-btn {
     font-size: 2.5vw;
   }
 
@@ -468,7 +535,6 @@ body {
   .recipe-text p {
     font-size: 14px;
   }
-
 }
   
 /* ===== TABLET ===== */
@@ -491,6 +557,10 @@ body {
   }
   
   .show-more-btn {
+    font-size: 1.5vw;
+  }
+
+  .delete-btn {
     font-size: 1.5vw;
   }
 
@@ -580,18 +650,21 @@ body {
     font-size: 1vw;
   }
 
+  .delete-btn {
+    font-size: 1vw;
+  }
+
   .layout-wrapper {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    gap: 10px;
+    gap: 0px;
   }
  
   .fridge-and-panel {
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    gap: 16px;
   }
 
   .extra-panel {

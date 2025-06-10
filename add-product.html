@@ -8,27 +8,27 @@
 </head>
 <body>
 
-     <!-- pasek górny -->
-     <header class="top-bar">
-        <img src="SmartFridgelogo.jpg" alt="Logo" class="logo-img" />
-    
-        <!-- hamburger (dla małych urządzeń)) -->
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-    
-        <!-- przyciski menu -->
-        <nav class="nav-links" id="navLinks">
-          <button class="nav-btn">Twoja lodówka</button>
-          <button class="nav-btn">Dodaj produkt</button>
-          <button class="nav-btn">Dostępne przepisy</button>
-          <button class="nav-btn">Powiadomienia</button>
-          <button class="nav-btn logout">Wyloguj się</button>
-        </nav>
-      </header>
+  <!-- pasek górny -->
+  <header class="top-bar">
+    <img src="SmartFridgelogo.jpg" alt="Logo" class="logo-img" />
+
+    <!-- hamburger (dla małych urządzeń) -->
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <!-- przyciski menu -->
+    <nav class="nav-links" id="navLinks">
+      <button class="nav-btn" id="goToDashboard">Twoja lodówka</button> 
+      <button class="nav-btn">Dodaj produkt</button>
+      <button class="nav-btn">Dostępne przepisy</button>
+      <button class="nav-btn">Powiadomienia</button>
+      <button class="nav-btn logout">Wyloguj się</button>
+    </nav>
+  </header>
 
   <div class="login-wrapper">
     <div class="login-box">
       <div class="login-title">Dodaj produkt</div>
-      
+
       <label for="productName">Dodaj nazwę produktu:</label>
       <input type="text" id="productName" class="form-input" placeholder="np. Ser żółty" />
 
@@ -38,15 +38,15 @@
       <label for="expiryDate">Dodaj datę ważności:</label>
       <input type="date" id="expiryDate" class="form-input" />
 
-      <button class="login-btn">Dodaj</button>
+      <button class="login-btn" id="addProductBtn">Dodaj</button>
+
+      <p id="responseMessage" style="margin-top: 10px;"></p>
     </div>
   </div>
 
-  <script>
-    function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('open');
-    }
-</script>
+  <script src="add-product.js"></script>
+</body>
+
 
 </body>
 </html>

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "X2",
+    "amount": 2,
+    "expiryDate": "2025-06-29"
+  },
+  {
+    "name": "X4",
+    "amount": 4,
+    "expiryDate": "2025-06-12"
+  },
+  {
+    "name": "X10",
+    "amount": 10,
+    "expiryDate": "2025-06-10"
+  },
+  {
+    "name": "X5",
+    "amount": 200,
+    "expiryDate": "2025-06-13"
+  },
+  {
+    "name": "Xd",
+    "amount": 12,
+    "expiryDate": "2025-06-10"
+  },
+  {
+    "name": "X63",
+    "amount": 432234,
+    "expiryDate": "2025-06-26"
+  },
+  {
+    "name": "X12",
+    "amount": 22,
+    "expiryDate": "1312-03-12"
+  },
+  {
+    "name": "Ser",
+    "amount": 7,
+    "expiryDate": "7777-07-07"
+  },
+  {
+    "name": "Ser",
+    "amount": 1,
+    "expiryDate": "2025-06-10"
+  }
+]
