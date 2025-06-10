@@ -1,7 +1,37 @@
 [
   {
-    "name": "Ser",
-    "amount": 21,
+    "name": "X1",
+    "amount": 1,
     "expiryDate": "2025-06-10"
+  },
+  {
+    "name": "X2",
+    "amount": 2,
+    "expiryDate": "2025-06-11"
+  },
+  {
+    "name": "X3",
+    "amount": 3,
+    "expiryDate": "2025-06-12"
+  },
+  {
+    "name": "X4",
+    "amount": 4,
+    "expiryDate": "2025-06-14"
+  },
+  {
+    "name": "X5",
+    "amount": 5,
+    "expiryDate": "2025-06-15"
+  },
+  {
+    "name": "X6",
+    "amount": 6,
+    "expiryDate": "2025-06-16"
+  },
+  {
+    "name": "X7",
+    "amount": 7,
+    "expiryDate": "2025-06-24"
   }
 ]

@@ -1,137 +1,87 @@
-const gramRange = document.getElementById('gramRange');
-const rangeValue = document.getElementById('rangeValue');
-
 function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('open');
-    }
-
-    function toggleExtra() {
-    document.getElementById('extraPanel').classList.toggle('hidden');
-    }
-
-document.getElementById('goToAddProduct').addEventListener('click', () => {
-    window.location.href = 'add-product.html';
-  });
-
-  const filterInput = document.getElementById('filterInput');
-  const gramInput = document.getElementById('gramInput');
-  
-  function applyFilters() {
-    const nameFilter = filterInput.value.toLowerCase();
-    const gramLimit = parseInt(gramInput.value, 10);
-  
-    const allProducts = document.querySelectorAll('.product');
-    const extraPanel = document.getElementById('extraPanel');
-    let anyVisibleInExtra = false;
-  
-    allProducts.forEach(product => {
-      const name = product.querySelector('strong')?.innerText.toLowerCase() || '';
-      const amountMatch = product.innerText.match(/(\d+)g/);
-      const grams = amountMatch ? parseInt(amountMatch[1], 10) : 0;
-  
-      const matchesName = name.includes(nameFilter) || !nameFilter;
-      const matchesGrams = isNaN(gramLimit) || grams <= gramLimit;
-  
-      const shouldShow = matchesName && matchesGrams;
-      product.style.display = shouldShow ? 'block' : 'none';
-  
-      if (shouldShow && extraPanel.contains(product)) {
-        anyVisibleInExtra = true;
-      }
-    });
-  
-    if ((nameFilter || !isNaN(gramLimit)) && anyVisibleInExtra) {
-      extraPanel.classList.remove('hidden');
-    } else if (!nameFilter && isNaN(gramLimit)) {
-      extraPanel.classList.add('hidden');
-    }
   }
   
-  filterInput.addEventListener('input', applyFilters);
-  gramInput.addEventListener('input', applyFilters);
+  document.getElementById('goToAddProduct').addEventListener('click', () => {
+    window.location.href = 'add-product.html';
+  });
   
-  
-
   window.addEventListener('DOMContentLoaded', async () => {
-    const fridge = document.querySelector('.fridge-wrapper');
-    const extra = document.getElementById('extraPanel');
-  
-    const positions = [
-      { top: '30%', left: '5%' },
-      { top: '30%', left: '30%' },
-      { top: '41%', left: '5%' },
-      { top: '41%', left: '30%' },
-      { top: '50%', left: '5%' },
-      { top: '50%', left: '30%' }
-    ];
+    const extraPanel = document.getElementById('extraPanel');
   
     try {
       const res = await fetch('http://localhost:3005/products');
       const products = await res.json();
   
-      // ➕ Dodaj priorytet do każdego produktu
       const today = new Date();
-      products.forEach(p => {
-        const expiry = new Date(p.expiryDate);
-        const diffInDays = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
   
-        if (diffInDays <= 1) {
-          p.priority = 1; // red
-        } else if (diffInDays <= 3) {
-          p.priority = 2; // orange
-        } else {
-          p.priority = 3; // green
-        }
-      });
+      // Najpierw określ priorytet świeżości
+    products.sort((a, b) => {
+    const today = new Date();
+    const aDays = Math.ceil((new Date(a.expiryDate) - today) / (1000 * 60 * 60 * 24));
+    const bDays = Math.ceil((new Date(b.expiryDate) - today) / (1000 * 60 * 60 * 24));
   
-      // 🔃 Sortuj według priorytetu
-      products.sort((a, b) => a.priority - b.priority);
+    const priority = days => days <= 1 ? 0 : days <= 3 ? 1 : 2;
+    return priority(aDays) - priority(bDays);
+    });
   
-      // 🎨 Renderuj posortowane produkty
-      products.forEach((p, i) => {
-        const div = document.createElement('div');
+  // Potem renderuj posortowane produkty
+  products.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'product';
   
-        // Kolor
-        let colorClass = 'green';
-        if (p.priority === 1) colorClass = 'red';
-        else if (p.priority === 2) colorClass = 'orange';
+    const expiry = new Date(p.expiryDate);
+    const diffDays = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
+    let color = 'green';
+    if (diffDays <= 1) color = 'red';
+    else if (diffDays <= 3) color = 'orange';
   
-        div.className = `product ${colorClass}`;
-        div.innerHTML = `<strong>${p.name}</strong><br>${p.amount}g<br>${p.expiryDate}`;
+    div.classList.add(color);
+    div.innerHTML = `<strong>${p.name}</strong><br>${p.amount}g<br>${p.expiryDate}`;
   
-        const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'X';
-        deleteBtn.classList.add('delete-btn');
-        deleteBtn.onclick = () => deleteProduct(p.name);
-        div.appendChild(deleteBtn);
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'X';
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.onclick = () => deleteProduct(p.name);
+    div.appendChild(deleteBtn);
   
-        if (i < 6) {
-          const pos = positions[i];
-          div.style.position = 'absolute';
-          div.style.top = pos.top;
-          div.style.left = pos.left;
-          fridge.appendChild(div);
-        } else {
-          extra.appendChild(div);
-        }
-      });
+    extraPanel.appendChild(div);
+  });
   
-    } catch (e) {
-      console.error('Błąd pobierania produktów', e);
+  
+      applyFilters();
+  
+    } catch (err) {
+      console.error('Błąd ładowania produktów:', err);
     }
   });
+  
+  function applyFilters() {
+  const nameFilter = document.getElementById('filterInput').value.toLowerCase();
+  const maxGrams = parseInt(document.getElementById('maxGrams').value);
+
+  const products = document.querySelectorAll('.product');
+  products.forEach(p => {
+    const name = p.querySelector('strong')?.innerText.toLowerCase() || '';
+    const grams = parseInt(p.innerText.match(/(\d+)g/)?.[1] || '0');
+
+    const nameMatch = name.includes(nameFilter);
+    const gramsMatch = isNaN(maxGrams) ? true : grams <= maxGrams;
+
+    p.style.display = nameMatch && gramsMatch ? 'block' : 'none';
+  });
+}
+
+  
+  document.getElementById('filterInput').addEventListener('input', applyFilters);
+  document.getElementById('maxGrams').addEventListener('input', applyFilters);
   
   function deleteProduct(name) {
     fetch(`http://localhost:3005/products/${encodeURIComponent(name)}`, {
       method: 'DELETE',
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      location.reload(); // przeładuj widok
-    })
-    .catch(err => console.error('Błąd przy usuwaniu:', err));
+      .then(res => res.json())
+      .then(() => location.reload())
+      .catch(err => console.error('Błąd przy usuwaniu:', err));
   }
-  
-
   

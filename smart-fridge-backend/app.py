@@ -4,7 +4,7 @@ import json
 import os
 
 app = Flask(__name__)
-CORS(app, origins=['http://127.0.0.1:5501'])  # Live Server
+CORS(app, origins=['http://127.0.0.1:5500'])  # Live Server
 
 DATA_FILE = 'products.json'
 

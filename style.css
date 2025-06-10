@@ -276,40 +276,61 @@ body {
 }
 
 /* DASHBOARD */
-#filterInput,
-#gramInput {
-  width: 280px;
-  padding: 8px 15px;
-  border-radius: 25px;
-  border: 2px solid #ccc;
-  font-size: 16px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s;
-  background-color: white;
-}
-
-#gramInput:focus {
-  outline: none;
-  border-color: #4caf50;
-}
-
-.search-container {
+.inside-fridge-background {
+  background-color: rgba(255, 255, 255, 0.79);
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin: 5px auto 0px auto;
-  width: 100%;
-  max-width: 480px;
-  padding: 0 10px;
-  box-sizing: border-box;
-  position: relative;
 }
 
 
-#filterInput:focus {
-  outline: none;
+.fridge-section {
+  max-width: 523px;
+  flex: 1;
+  position: relative;
+}
+
+.inside-fridge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+}
+
+.inside-fridge input {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1.8px solid #ccc;
+  font-size: 14px;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.inside-fridge input:focus {
   border-color: #4caf50;
+  outline: none;
+}
+
+.welcome-message {
+  font-size: 24px;
+  color: #378BA4;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
 }
 
 .fridge-wrapper {
@@ -317,7 +338,7 @@ body {
   width: 90vw;
   max-width: 523px;
   height: auto;
-  aspect-ratio: 2 / 3;
+
 }
 
 .fridge-img {
@@ -347,12 +368,11 @@ body {
 
 .layout-wrapper {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: wrap; /* dla responsywności */
-  gap: 24px;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
+  justify-content: center;
+  
 }
 
 .extra-panel {
@@ -374,29 +394,13 @@ body {
   font-size: 14px;
 }
 
-.show-more-btn {
-  position: absolute;
-  background-color: #378BA4;
-  color: white;
-  padding: 6px 14px;
-  font-size: 16px;
-  border: none;
-  border-radius: 25px;
-  font-weight: 600;
-  cursor: pointer;
-  z-index: 3;
-}
-
-.hidden {
-  display: none;
-}
-
 .fridge-and-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 0px;
+  
 }
-
 
 .delete-btn {
   position: absolute;
@@ -456,10 +460,6 @@ body {
   }
 
   .product {
-    font-size: 2.5vw;
-  }
-
-  .show-more-btn {
     font-size: 2.5vw;
   }
 
@@ -555,10 +555,6 @@ body {
   .product {
     font-size: 1.5vw;
   }
-  
-  .show-more-btn {
-    font-size: 1.5vw;
-  }
 
   .delete-btn {
     font-size: 1.5vw;
@@ -646,10 +642,6 @@ body {
     font-size: 1vw;
   }
 
-  .show-more-btn {
-    font-size: 1vw;
-  }
-
   .delete-btn {
     font-size: 1vw;
   }
@@ -665,6 +657,7 @@ body {
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
+    gap: 16px;
   }
 
   .extra-panel {
