@@ -1,2 +1,3 @@
 # Smart_Fridge
-tu robi michal
+tu bedzie dokumentacja
+tu robi filip

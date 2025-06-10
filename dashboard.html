@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twoja lodówka</title>
+  <link rel="stylesheet" href="style.css">
+</head> 
+
+<body>
+
+    <!-- pasek górny -->
+    <header class="top-bar">
+      <img src="SmartFridgelogo.jpg" alt="Logo" class="logo-img" />
+  
+      <!-- hamburger (dla małych urządzeń)) -->
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+  
+      <!-- przyciski menu -->
+      <nav class="nav-links" id="navLinks">
+        <button class="nav-btn">Twoja lodówka</button>
+        <button class="nav-btn" id="goToAddProduct">Dodaj produkt</button>
+        <button class="nav-btn">Dostępne przepisy</button>
+        <button class="nav-btn">Powiadomienia</button>
+        <button class="nav-btn logout">Wyloguj się</button>
+      </nav>
+    </header>
+
+   <div class="layout-wrapper">
+   <div class="fridge-and-panel">
+    <div class="fridge-wrapper">
+      
+      <div class="search-container">
+        <input type="text" id="filterInput" placeholder="🔍 Wyszukaj produkt..." />
+        <input type="number" id="gramInput" placeholder="💪 Max gramatura [g]" min="0" />
+      </div>
+      
+      
+      <img src="fridge.jpg" alt="Fridge" class="fridge-img" />
+    
+      <!-- produkty zostaną dodane tutaj -->
+      <button class="show-more-btn" onclick="toggleExtra()" style="top: 61%; left: 21%;">Więcej</button>
+    </div>
+    
+    <div class="extra-panel hidden" id="extraPanel">
+      <!-- nadmiarowe produkty zostaną dodane tutaj -->
+    </div>
+   </div>
+    <script src="dashboard.js"></script>
+
+</body>
+</html>
