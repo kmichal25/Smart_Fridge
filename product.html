@@ -15,7 +15,7 @@
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <nav class="nav-links" id="navLinks">
       <button class="nav-btn">Twoja lodówka</button>
-      <button class="nav-btn">Dodaj produkt</button>
+   <button id="addProductBtn" class="nav-btn">Dodaj produkt</button>
       <button class="nav-btn">Dostępne przepisy</button>
       <button class="nav-btn">Powiadomienia</button>
       <button class="nav-btn logout">Wyloguj się</button>
@@ -40,6 +40,14 @@
     <button class="btn-primary">Zjedzono/usuń</button>
   </div>
 
+  <!-- Miejsce na komunikat o usunięciu produktu -->
+<div id="productDetails" style="margin-top: 1em; color: red; font-weight: bold;"></div>
+
+<!-- Modal komunikatu -->
+<div id="modalMessage"> <!-- komunikat będzie wstawiany dynamicznie --> </div>
+<div id="modalOverlay"></div>
+
+
   <!-- 🔒 (opcjonalnie) SEKCJA PRZEPISÓW może być pusta lub generowana potem -->
   <div class="recipe-section">
     <h2>Przepisy z tym produktem</h2>
@@ -47,14 +55,34 @@
   </div>
 
   <!-- 🔧 SKRYPT do hamburgera -->
+   <!-- 🔧 SKRYPT do hamburgera -->
   <script>
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('open');
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const yourFridgeBtn = document.querySelector(".nav-btn");
+      if (yourFridgeBtn) {
+        yourFridgeBtn.addEventListener("click", () => {
+          window.location.href = "dashboard.html";
+        });
+      }
+    });
+
+     const addProductBtn = document.getElementById("addProductBtn");
+  if (addProductBtn) {
+    addProductBtn.addEventListener("click", () => {
+      window.location.href = "add-product.html";
+    });
+  }
   </script>
+
 
   <!-- 🚀 ZAŁĄCZENIE JS Z DANYMI PRODUKTU -->
   <script src="product.js"></script>
+
+
 
 </body>
 </html>

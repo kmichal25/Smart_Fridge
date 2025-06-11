@@ -12,18 +12,6 @@ def load_products():
     except FileNotFoundError:
         return []
 
-# Wczytaj składniki z pliku CSV
-def load_ingredients():
-    ingredients = []
-    try:
-        with open("ingredients.csv", "r", encoding="utf-8") as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if row:
-                    ingredients.append(row[0].strip())
-    except FileNotFoundError:
-        pass
-    return ingredients
 
 # Zapisz produkty do pliku JSON
 def save_products(products):

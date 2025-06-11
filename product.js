@@ -1,5 +1,19 @@
+function showModal(message) {
+  const modal = document.getElementById('modalMessage');
+  const overlay = document.getElementById('modalOverlay');
+  modal.textContent = message;
+  modal.style.display = 'block';
+  overlay.style.display = 'block';
+
+  setTimeout(() => {
+    modal.style.display = 'none';
+    overlay.style.display = 'none';
+  }, 3000);
+}
+
 function fetchNutritionData(productName) {
   const apiUrl = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(productName)}&search_simple=1&action=process&json=1`;
+
 
   return fetch(apiUrl)
     .then(response => response.json())
@@ -36,67 +50,136 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    // 1. Wczytaj lokalny plik JSON z produktami
     const response = await fetch("products.json");
     const data = await response.json();
 
-    // 2. Znajdź produkt pasujący po nazwie
-    const product = data.find(p => p.name.toLowerCase() === productName.toLowerCase());
+    let product = data.find(p => p.name.toLowerCase() === productName.toLowerCase());
 
     if (!product) {
       alert(`Nie znaleziono produktu: ${productName}`);
       return;
     }
 
-    // 3. Wypełnij dane w HTML
-    document.querySelector(".product-card h2").textContent = product.name;
+    function renderProduct() {
+      document.querySelector(".product-card h2").textContent = product.name;
 
-    document.querySelector(".product-card p").innerHTML = `
-      <strong>Gramatura:</strong> ${product.amount} g<br>
-      <strong>Data ważności:</strong> ${product.expiryDate}
-    `;
-
-    // 4. Oblicz dni do końca
-    const today = new Date();
-    const expiry = new Date(product.expiryDate);
-    const daysLeft = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
-
-    // --- Nowa część: pasek postępu ---
-    const shelfLifeDays = product.shelfLifeDays || 30;  // domyślnie 30 dni jeśli brak danych
-    let progressPercent = (daysLeft / shelfLifeDays) * 100;
-    if (progressPercent > 100) progressPercent = 100;
-
-    const progressBar = document.querySelector(".progress-bar .progress");
-    if (daysLeft <= 0) {
-      progressBar.style.width = '100%';
-      progressBar.style.backgroundColor = 'red';
-      progressBar.textContent = "Produkt przeterminowany!";
-    } else if (daysLeft <= 5) {
-      progressBar.style.width = `${progressPercent}%`;
-      progressBar.style.backgroundColor = 'orange';
-      progressBar.textContent = `${daysLeft} dni do końca`;
-    } else {
-      progressBar.style.width = `${progressPercent}%`;
-      progressBar.style.backgroundColor = 'green';
-      progressBar.textContent = `${daysLeft} dni do końca`;
-    }
-    // --- koniec paska postępu ---
-
-    // 5. Pobierz dane żywieniowe z OpenFoodFacts, czekaj na wynik
-    const nutrition = await fetchNutritionData(product.name);
-
-    if (nutrition) {
-      document.querySelector(".nutrition").innerHTML = `
-        <div><strong>${nutrition.kcal}</strong><br>kcal/100g</div>
-        <div><strong>${nutrition.protein}g</strong><br>białko</div>
-        <div><strong>${nutrition.fat}g</strong><br>tłuszcze</div>
-        <div><strong>${nutrition.carbs}g</strong><br>węglowodany</div>
+      document.querySelector(".product-card p").innerHTML = `
+        <strong>Gramatura:</strong> ${product.amount} g<br>
+        <strong>Data ważności:</strong> ${product.expiryDate}
       `;
-    } else {
-      document.querySelector(".nutrition").innerHTML = "<p>Brak danych żywieniowych.</p>";
+
+      const today = new Date();
+      const expiry = new Date(product.expiryDate);
+      const daysLeft = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
+
+      const shelfLifeDays = product.shelfLifeDays || 30;
+      let progressPercent = (daysLeft / shelfLifeDays) * 100;
+      if (progressPercent > 100) progressPercent = 100;
+
+      const progressBar = document.querySelector(".progress-bar .progress");
+      if (daysLeft <= 0) {
+        progressBar.style.width = '100%';
+        progressBar.style.backgroundColor = 'red';
+        progressBar.textContent = "Produkt przeterminowany!";
+      } else if (daysLeft <= 5) {
+        progressBar.style.width = `${progressPercent}%`;
+        progressBar.style.backgroundColor = 'orange';
+        progressBar.textContent = `${daysLeft} dni do końca`;
+      } else {
+        progressBar.style.width = `${progressPercent}%`;
+        progressBar.style.backgroundColor = 'green';
+        progressBar.textContent = `${daysLeft} dni do końca`;
+      }
+
+      fetchNutritionData(product.name).then(nutrition => {
+        if (nutrition) {
+          document.querySelector(".nutrition").innerHTML = `
+            <div><strong>${nutrition.kcal}</strong><br>kcal/100g</div>
+            <div><strong>${nutrition.protein}g</strong><br>białko</div>
+            <div><strong>${nutrition.fat}g</strong><br>tłuszcze</div>
+            <div><strong>${nutrition.carbs}g</strong><br>węglowodany</div>
+          `;
+        } else {
+          document.querySelector(".nutrition").innerHTML = "<p>Brak danych żywieniowych.</p>";
+        }
+      });
     }
+
+    renderProduct();
+
+    document.querySelector(".btn-primary").addEventListener("click", () => {
+      product = null;
+
+      document.querySelector(".product-card h2").textContent = "";
+      document.querySelector(".product-card p").innerHTML = "";
+      const progressBar = document.querySelector(".progress-bar .progress");
+      progressBar.style.width = '0';
+      progressBar.style.backgroundColor = 'transparent';
+      progressBar.textContent = "";
+
+      document.querySelector(".nutrition").innerHTML = "";
+
+      // Tu pokazujemy modal zamiast wstawiać do jakiegoś diva
+       showModal("Ten produkt został usunięty i nie istnieje już w Twojej lodówce.");
+
+  // Przekierowanie na dashboard po krótkim opóźnieniu, np. 1,5 sekundy, żeby komunikat zdążył się pokazać
+  setTimeout(() => {
+    window.location.href = "dashboard.html";
+  }, 1500);
+});
 
   } catch (err) {
     console.error("Błąd podczas ładowania danych:", err);
   }
 });
+
+async function loadMatchingRecipes(productName) {
+  try {
+    const response = await fetch("recipes.json");
+    const recipes = await response.json();
+
+    const lowerName = productName.toLowerCase();
+
+    const matching = recipes.filter(recipe =>
+      recipe.title.toLowerCase().includes(lowerName) ||
+      recipe.description.toLowerCase().includes(lowerName) ||
+      recipe.instructions.some(instr => instr.toLowerCase().includes(lowerName))
+    );
+
+    const section = document.querySelector(".recipe-section");
+
+    if (!section) {
+      console.warn("Brak kontenera .recipe-section w HTML.");
+      return;
+    }
+
+    if (matching.length === 0) {
+      section.innerHTML = `
+        <h2>Przepisy z tym produktem</h2>
+        <p>Brak przepisów z tym składnikiem.</p>
+      `;
+      return;
+    }
+
+    section.innerHTML = `<h2>Przepisy z tym produktem</h2>`;
+
+    matching.forEach(recipe => {
+      const recipeDiv = document.createElement("div");
+      recipeDiv.classList.add("recipe-card");
+
+      recipeDiv.innerHTML = `
+        <h3>${recipe.title}</h3>
+        <p>${recipe.description}</p>
+        <p><strong>Czas:</strong> ${recipe.prep_time + recipe.cook_time} min</p>
+        <p><strong>Porcje:</strong> ${recipe.servings}</p>
+      `;
+
+      section.appendChild(recipeDiv);
+    });
+
+  } catch (error) {
+    console.error("Błąd podczas ładowania recipes.json:", error);
+  }
+}
+
+
