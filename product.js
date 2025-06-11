@@ -173,14 +173,24 @@ async function loadMatchingRecipes(productName) {
       recipeDiv.classList.add("recipe-card");
 
       // Update the recipe card template in loadMatchingRecipes function
+// Utwórz wrapper na tekst przepisu
 recipeDiv.innerHTML = `
   <h3>${recipe.title}</h3>
   <p>${recipe.description}</p>
   <p><strong>Czas:</strong> ${recipe.prep_time + recipe.cook_time} min</p>
   <p><strong>Porcje:</strong> ${recipe.servings}</p>
-  <button class=".btn-recipe" data-id="${recipe.id}">Zobacz przepis</button>
 `;
-      section.appendChild(recipeDiv);
+
+// Dodaj przycisk "Zobacz przepis"
+const viewBtn = document.createElement("button");
+viewBtn.textContent = "Zobacz przepis";
+viewBtn.classList.add("btn-primary", "view-recipe");
+viewBtn.dataset.id = recipe.id;
+viewBtn.style.marginTop = "10px"; // opcjonalne
+
+// Dodaj przycisk do diva z przepisem
+recipeDiv.appendChild(viewBtn);
+
     });
 
   } catch (error) {
@@ -195,56 +205,56 @@ async function loadMatchingRecipes(productName) {
     const recipes = await response.json();
     const lowerName = productName.toLowerCase();
 
-    // Improved matching logic: search in ingredients and instructions
-    const matching = recipes.filter(recipe => {
-      // 1. Check title and description
-      if (recipe.title.toLowerCase().includes(lowerName) ||
-          recipe.description.toLowerCase().includes(lowerName)) {
-        return true;
-      }
-      
-      // 2. Check instructions
-      if (recipe.instructions.some(instr => 
-          instr.toLowerCase().includes(lowerName))) {
-        return true;
-      }
-      
-      // 3. Check ingredients (if available in future)
-      return false;
-    });
+    const matching = recipes.filter(recipe =>
+      recipe.title.toLowerCase().includes(lowerName) ||
+      recipe.description.toLowerCase().includes(lowerName) ||
+      recipe.instructions.some(instr => instr.toLowerCase().includes(lowerName))
+    );
 
     const section = document.querySelector(".recipe-section");
-    
-    // Clear existing content
-    section.innerHTML = matching.length > 0 
-      ? `<h2>Przepisy z produktem: ${productName}</h2>`
-      : `<h2>Brak przepisów z produktem: ${productName}</h2>`;
-    
-    // Display matching recipes
-    matching.forEach(recipe => {
+
+    section.innerHTML = `<h2>Przepisy z produktem: ${productName}</h2>`;
+
+    const recipeGrid = document.createElement("div");
+    recipeGrid.classList.add("recipe-grid");
+
+    // Wyświetl tylko dwa przepisy
+    matching.slice(0, 2).forEach(recipe => {
       const recipeDiv = document.createElement("div");
       recipeDiv.classList.add("recipe-card");
-      
+
       recipeDiv.innerHTML = `
         <h3>${recipe.title}</h3>
         <p>${recipe.description}</p>
-        <p><strong>Czas przygotowania:</strong> ${recipe.prep_time} min</p>
-        <p><strong>Czas gotowania:</strong> ${recipe.cook_time} min</p>
+        <p><strong>Czas:</strong> ${recipe.prep_time + recipe.cook_time} min</p>
         <p><strong>Porcje:</strong> ${recipe.servings}</p>
-        <button class="view-recipe" data-id="${recipe.id}">Zobacz przepis</button>
+        <button class="btn-primary - view-recipe" data-id="${recipe.id}">Zobacz przepis</button>
       `;
-      
-      section.appendChild(recipeDiv);
+
+      recipeGrid.appendChild(recipeDiv);
     });
-    
-    // Add event listeners to recipe buttons
-    document.querySelectorAll('.view-recipe').forEach(button => {
+
+    section.appendChild(recipeGrid);
+
+    // Dodaj przycisk do pełnej wyszukiwarki przepisów
+    const moreBtn = document.createElement("button");
+    moreBtn.textContent = "Zobacz więcej przepisów";
+    moreBtn.classList.add("btn-primary");
+moreBtn.style.marginTop = "20px"; // opcjonalne
+
+    moreBtn.style.marginTop = "20px";
+    moreBtn.onclick = () => window.location.href = "recipes.html";
+
+    section.appendChild(moreBtn);
+
+    // Obsługa kliknięcia na "Zobacz przepis"
+    section.querySelectorAll('.view-recipe').forEach(button => {
       button.addEventListener('click', (e) => {
         const recipeId = e.target.dataset.id;
         window.location.href = `recipe.html?id=${recipeId}`;
       });
     });
-    
+
   } catch (error) {
     console.error("Błąd podczas ładowania przepisów:", error);
     document.querySelector(".recipe-section").innerHTML = `
@@ -253,3 +263,4 @@ async function loadMatchingRecipes(productName) {
     `;
   }
 }
+

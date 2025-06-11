@@ -463,22 +463,6 @@ body {
   margin: 1em 0;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
-/* Add this to your style.css */
-.btn-recipe {
-  background-color: #65C9F0;
-  padding: 12px 24px;
-  border-radius: 20px;
-  border: none;
-  font-weight: bold;
-  font-size: 16px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-
-.btn-recipe:hover {
-  background-color: #5abbe0;
-}
 
 
 /* -------------------------------
