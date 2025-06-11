@@ -40,8 +40,20 @@
     <button class="btn-primary">Zjedzono/usuń</button>
   </div>
 
+  <!-- Add this section below product details -->
+<section class="recipe-section">
+  <div class="recipe-container">
+    <h2>Przepisy z tym produktem</h2>
+    <div class="recipe-grid">
+      <!-- Recipes will be dynamically inserted here -->
+    </div>
+  </div>
+</section>
+
   <!-- Miejsce na komunikat o usunięciu produktu -->
 <div id="productDetails" style="margin-top: 1em; color: red; font-weight: bold;"></div>
+
+
 
 <!-- Modal komunikatu -->
 <div id="modalMessage"> <!-- komunikat będzie wstawiany dynamicznie --> </div>
@@ -49,9 +61,9 @@
 
 
   <!-- 🔒 (opcjonalnie) SEKCJA PRZEPISÓW może być pusta lub generowana potem -->
-  <div class="recipe-section">
-    <h2>Przepisy z tym produktem</h2>
-    <p>W przyszłości: tutaj mogą się pojawić dopasowane przepisy.</p>
+  <div class="recipe.card">
+    <h2></h2>
+    <p></p>
   </div>
 
   <!-- 🔧 SKRYPT do hamburgera -->

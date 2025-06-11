@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!productName) {
     alert("Brak nazwy produktu w URL.");
     return;
+
   }
 
   try {
@@ -102,6 +103,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         } else {
           document.querySelector(".nutrition").innerHTML = "<p>Brak danych żywieniowych.</p>";
         }
+
+         if (product) {
+    loadMatchingRecipes(product.name);
+  }
       });
     }
 
@@ -167,13 +172,14 @@ async function loadMatchingRecipes(productName) {
       const recipeDiv = document.createElement("div");
       recipeDiv.classList.add("recipe-card");
 
-      recipeDiv.innerHTML = `
-        <h3>${recipe.title}</h3>
-        <p>${recipe.description}</p>
-        <p><strong>Czas:</strong> ${recipe.prep_time + recipe.cook_time} min</p>
-        <p><strong>Porcje:</strong> ${recipe.servings}</p>
-      `;
-
+      // Update the recipe card template in loadMatchingRecipes function
+recipeDiv.innerHTML = `
+  <h3>${recipe.title}</h3>
+  <p>${recipe.description}</p>
+  <p><strong>Czas:</strong> ${recipe.prep_time + recipe.cook_time} min</p>
+  <p><strong>Porcje:</strong> ${recipe.servings}</p>
+  <button class=".btn-recipe" data-id="${recipe.id}">Zobacz przepis</button>
+`;
       section.appendChild(recipeDiv);
     });
 
@@ -182,4 +188,68 @@ async function loadMatchingRecipes(productName) {
   }
 }
 
+// Add to existing product.js
+async function loadMatchingRecipes(productName) {
+  try {
+    const response = await fetch("recipes.json");
+    const recipes = await response.json();
+    const lowerName = productName.toLowerCase();
 
+    // Improved matching logic: search in ingredients and instructions
+    const matching = recipes.filter(recipe => {
+      // 1. Check title and description
+      if (recipe.title.toLowerCase().includes(lowerName) ||
+          recipe.description.toLowerCase().includes(lowerName)) {
+        return true;
+      }
+      
+      // 2. Check instructions
+      if (recipe.instructions.some(instr => 
+          instr.toLowerCase().includes(lowerName))) {
+        return true;
+      }
+      
+      // 3. Check ingredients (if available in future)
+      return false;
+    });
+
+    const section = document.querySelector(".recipe-section");
+    
+    // Clear existing content
+    section.innerHTML = matching.length > 0 
+      ? `<h2>Przepisy z produktem: ${productName}</h2>`
+      : `<h2>Brak przepisów z produktem: ${productName}</h2>`;
+    
+    // Display matching recipes
+    matching.forEach(recipe => {
+      const recipeDiv = document.createElement("div");
+      recipeDiv.classList.add("recipe-card");
+      
+      recipeDiv.innerHTML = `
+        <h3>${recipe.title}</h3>
+        <p>${recipe.description}</p>
+        <p><strong>Czas przygotowania:</strong> ${recipe.prep_time} min</p>
+        <p><strong>Czas gotowania:</strong> ${recipe.cook_time} min</p>
+        <p><strong>Porcje:</strong> ${recipe.servings}</p>
+        <button class="view-recipe" data-id="${recipe.id}">Zobacz przepis</button>
+      `;
+      
+      section.appendChild(recipeDiv);
+    });
+    
+    // Add event listeners to recipe buttons
+    document.querySelectorAll('.view-recipe').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const recipeId = e.target.dataset.id;
+        window.location.href = `recipe.html?id=${recipeId}`;
+      });
+    });
+    
+  } catch (error) {
+    console.error("Błąd podczas ładowania przepisów:", error);
+    document.querySelector(".recipe-section").innerHTML = `
+      <h2>Błąd ładowania przepisów</h2>
+      <p>${error.message}</p>
+    `;
+  }
+}
