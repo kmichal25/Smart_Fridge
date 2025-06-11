@@ -27,26 +27,38 @@ function toggleMenu() {
   
   // Potem renderuj posortowane produkty
   products.forEach(p => {
-    const div = document.createElement('div');
-    div.className = 'product';
-  
-    const expiry = new Date(p.expiryDate);
-    const diffDays = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
-    let color = 'green';
-    if (diffDays <= 1) color = 'red';
-    else if (diffDays <= 3) color = 'orange';
-  
-    div.classList.add(color);
-    div.innerHTML = `<strong>${p.name}</strong><br>${p.amount}g<br>${p.expiryDate}`;
-  
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'X';
-    deleteBtn.className = 'delete-btn';
-    deleteBtn.onclick = () => deleteProduct(p.name);
-    div.appendChild(deleteBtn);
-  
-    extraPanel.appendChild(div);
+  const div = document.createElement('div');
+  div.className = 'product';
+
+  const expiry = new Date(p.expiryDate);
+  const diffDays = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
+  let color = 'green';
+  if (diffDays <= 1) color = 'red';
+  else if (diffDays <= 3) color = 'orange';
+
+  div.classList.add(color);
+
+  // HTML produktu
+  div.innerHTML = `<strong>${p.name}</strong><br>${p.amount}g<br>${p.expiryDate}`;
+
+  // Kliknięcie na div (poza przyciskiem usuń)
+  div.addEventListener('click', () => {
+    window.location.href = `product.html?name=${encodeURIComponent(p.name)}`;
   });
+
+  // Przycisk usuwania – zatrzymaj propagację kliknięcia
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = 'X';
+  deleteBtn.className = 'delete-btn';
+  deleteBtn.onclick = (e) => {
+    e.stopPropagation(); // zapobiega przekierowaniu
+    deleteProduct(p.name);
+  };
+  div.appendChild(deleteBtn);
+
+  extraPanel.appendChild(div);
+});
+
   
   
       applyFilters();

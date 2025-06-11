@@ -1,68 +1,70 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask import Flask, request, jsonify, render_template
 import json
-import os
+import csv
 
-app = Flask(__name__)
-CORS(app, origins=['http://127.0.0.1:5500'])  # Live Server
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
-DATA_FILE = 'products.json'
-
+# Wczytaj produkty z pliku JSON
 def load_products():
-    if not os.path.exists(DATA_FILE):
+    try:
+        with open("products.json", "r", encoding="utf-8") as file:
+            return json.load(file)
+    except FileNotFoundError:
         return []
-    with open(DATA_FILE, 'r') as f:
-        return json.load(f)
 
+# Wczytaj składniki z pliku CSV
+def load_ingredients():
+    ingredients = []
+    try:
+        with open("ingredients.csv", "r", encoding="utf-8") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if row:
+                    ingredients.append(row[0].strip())
+    except FileNotFoundError:
+        pass
+    return ingredients
+
+# Zapisz produkty do pliku JSON
 def save_products(products):
-    with open(DATA_FILE, 'w') as f:
-        json.dump(products, f, indent=2)
+    with open("products.json", "w", encoding="utf-8") as file:
+        json.dump(products, file, ensure_ascii=False, indent=4)
 
-@app.route('/add-product', methods=['POST'])
+# Routing do strony głównej (np. index.html)
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# Routing do products.html
+@app.route('/products.html')
+def products_page():
+    return render_template('products.html')
+
+# Endpoint zwracający produkt po nazwie
+@app.route('/product')
+def get_product():
+    name = request.args.get("name")
+    products = load_products()
+    for product in products:
+        if product["name"].lower() == name.lower():
+            return jsonify(product)
+    return jsonify({"error": "Product not found"}), 404
+
+# Endpoint dodający nowy produkt
+@app.route('/product', methods=["POST"])
 def add_product():
-    data = request.get_json()
-    name = data.get('name')
-    amount = data.get('amount')
-    expiry_date = data.get('expiryDate')
-
-    # Walidacje
-    if not name or not isinstance(name, str):
-        return jsonify({'error': 'Nazwa produktu jest wymagana.'}), 400
-
-    if not isinstance(amount, (int, float)) or amount < 0:
-        return jsonify({'error': 'Ilość musi być liczbą nieujemną.'}), 400
-
-    if not expiry_date or not isinstance(expiry_date, str):
-        return jsonify({'error': 'Data ważności jest wymagana.'}), 400
-
-    # Poprawa nazwy: Pierwsza litera duża
-    name = name.strip().capitalize()
-
+    new_product = request.get_json()
     products = load_products()
-    products.append({
-        'name': name,
-        'amount': amount,
-        'expiryDate': expiry_date
-    })
+    products.append(new_product)
     save_products(products)
+    return jsonify({"message": "Product added successfully"}), 201
 
-    return jsonify({'message': 'Produkt dodany pomyślnie', 'product': products[-1]}), 201
+# Endpoint zwracający listę składników
+@app.route('/ingredients')
+def get_ingredients():
+    return jsonify(load_ingredients())
 
-@app.route('/products', methods=['GET'])
-def get_products():
-    return jsonify(load_products())
+# Uruchom serwer na porcie 3005
+if __name__ == "__main__":
+    app.run(port=3005, debug=True)
 
-@app.route('/products/<name>', methods=['DELETE'])
-def delete_product(name):
-    name = name.lower()
-    products = load_products()
-    filtered = [p for p in products if p['name'].lower() != name]
-
-    if len(filtered) == len(products):
-        return jsonify({'error': 'Nie znaleziono produktu.'}), 404
-
-    save_products(filtered)
-    return jsonify({'message': 'Produkt usunięty pomyślnie'})
-
-if __name__ == '__main__':
-    app.run(port=3005)

@@ -1,12 +1,32 @@
 [
   {
-    "name": "Ser \u017c\u00f3\u0142ty",
-    "amount": 11,
-    "expiryDate": "0001-02-01"
+    "name": "Ser",
+    "amount": 150,
+    "expiryDate": "0025-12-11"
   },
   {
-    "name": "231",
-    "amount": 31,
-    "expiryDate": "0001-11-11"
+    "name": "Ser",
+    "amount": 150,
+    "expiryDate": "1111-02-11"
+  },
+  {
+    "name": "Banan",
+    "amount": 100,
+    "expiryDate": "2004-06-12"
+  },
+  {
+    "name": "Truskawki",
+    "amount": 100,
+    "expiryDate": "2025-10-15"
+  },
+  {
+    "name": "Jab\u0142ko",
+    "amount": 120,
+    "expiryDate": "2025-06-12"
+  },
+  {
+    "name": "Jogurt naturalny",
+    "amount": 200,
+    "expiryDate": "2025-06-13"
   }
 ]
