@@ -56,11 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let product = data.find(p => p.name.toLowerCase() === productName.toLowerCase());
 
-    if (!product) {
-      alert(`Nie znaleziono produktu: ${productName}`);
-      return;
-    }
-
+   
     function renderProduct() {
       document.querySelector(".product-card h2").textContent = product.name;
 
@@ -112,26 +108,34 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderProduct();
 
-    document.querySelector(".btn-primary").addEventListener("click", () => {
-      product = null;
-
-      document.querySelector(".product-card h2").textContent = "";
-      document.querySelector(".product-card p").innerHTML = "";
-      const progressBar = document.querySelector(".progress-bar .progress");
-      progressBar.style.width = '0';
-      progressBar.style.backgroundColor = 'transparent';
-      progressBar.textContent = "";
-
-      document.querySelector(".nutrition").innerHTML = "";
-
-      // Tu pokazujemy modal zamiast wstawiać do jakiegoś diva
-       showModal("Ten produkt został usunięty i nie istnieje już w Twojej lodówce.");
-
-  // Przekierowanie na dashboard po krótkim opóźnieniu, np. 1,5 sekundy, żeby komunikat zdążył się pokazać
-  setTimeout(() => {
-    window.location.href = "dashboard.html";
-  }, 1500);
+   document.querySelector(".btn-primary").addEventListener("click", () => {
+  deleteProduct(product.name);
 });
+
+document.querySelector(".btn-primary").addEventListener("click", () => {
+  deleteProduct(product.name);
+});
+
+function deleteProduct(name) {
+  fetch(`http://localhost:3005/products/${encodeURIComponent(name)}`, {
+    method: 'DELETE',
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Nie udało się usunąć produktu.");
+      return res.json();
+    })
+    .then(() => {
+      showModal("Produkt został usunięty z lodówki.");
+      setTimeout(() => {
+        window.location.href = "dashboard.html"; // powrót do lodówki
+      }, 1500);
+    })
+    .catch(err => {
+      console.error('Błąd przy usuwaniu:', err);
+      showModal("Błąd przy usuwaniu produktu.");
+    });
+}
+
 
   } catch (err) {
     console.error("Błąd podczas ładowania danych:", err);

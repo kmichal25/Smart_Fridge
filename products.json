@@ -1,20 +1,5 @@
 [
   {
-    "name": "Ser",
-    "amount": 150,
-    "expiryDate": "0025-12-11"
-  },
-  {
-    "name": "Ser",
-    "amount": 150,
-    "expiryDate": "1111-02-11"
-  },
-  {
-    "name": "Banan",
-    "amount": 100,
-    "expiryDate": "2004-06-12"
-  },
-  {
     "name": "Truskawki",
     "amount": 100,
     "expiryDate": "2025-10-15"
