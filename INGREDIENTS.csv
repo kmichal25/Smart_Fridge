@@ -1,0 +1,227 @@
+category,product,calories,protein,fat,carbs
+Owoce,Jabłko,52,0.3,0.2,14
+Owoce,Banan,89,1.1,0.3,23
+Owoce,Pomarańcza,47,0.9,0.1,12
+Owoce,Winogrona,69,0.7,0.2,18
+Owoce,Truskawki,32,0.7,0.3,8
+Owoce,Gruszka,57,0.4,0.1,15
+Owoce,Arbuz,30,0.6,0.2,8
+Owoce,Ananas,50,0.5,0.1,13
+Owoce,Mango,60,0.8,0.4,15
+Owoce,Kiwi,61,1.1,0.5,15
+Owoce,Brzoskwinia,39,0.9,0.3,10
+Owoce,Nektarynka,44,1.1,0.3,11
+Owoce,Śliwki,46,0.7,0.3,11
+Owoce,Maliny,52,1.2,0.7,12
+Owoce,Jagody,57,0.7,0.3,14
+Owoce,Porzeczki,56,1.4,0.2,14
+Owoce,Awokado,160,2.0,15.0,9
+Owoce,Granat,83,1.7,1.2,19
+Owoce,Grejpfrut,42,0.8,0.1,11
+Owoce,Limonka,30,0.7,0.2,11
+Owoce,Figi,74,0.8,0.3,19
+Owoce,Daktyl,282,2.5,0.4,75
+Owoce,Marakuja,97,2.2,0.7,23
+Owoce,Guawa,68,2.6,1.0,14
+Owoce,Liczi,66,0.8,0.4,17
+Warzywa,Marchew,41,0.9,0.2,10
+Warzywa,Brokuł,34,2.8,0.4,7
+Warzywa,Pomidor,18,0.9,0.2,3.9
+Warzywa,Ogórek,15,0.7,0.1,3.6
+Warzywa,Cebula,40,1.1,0.1,9
+Warzywa,Ziemniak,77,2.0,0.1,17
+Warzywa,Papryka,31,1.0,0.3,6
+Warzywa,Szpinak,23,2.9,0.4,3.6
+Warzywa,Kalafior,25,2.0,0.3,5
+Warzywa,Batat,86,1.6,0.1,20
+Warzywa,Dynia,26,1.0,0.1,7
+Warzywa,Cukinia,17,1.2,0.3,3.1
+Warzywa,Bakłażan,25,1.0,0.2,6
+Warzywa,Seler,16,0.7,0.2,3
+Warzywa,Sałata,15,1.4,0.2,2.9
+Warzywa,Rzodkiewka,16,0.7,0.1,3.4
+Warzywa,Burak,43,1.6,0.2,10
+Warzywa,Fasolka szparagowa,31,1.8,0.1,7
+Warzywa,Groszek,81,5.4,0.4,14
+Warzywa,Kukurydza,86,3.3,1.4,19
+Warzywa,Kapusta,25,1.3,0.1,6
+Warzywa,Kalarepa,27,1.7,0.1,6
+Warzywa,Szczypiorek,30,3.3,0.7,4.4
+Warzywa,Pietruszka (korzeń),51,1.5,0.5,11
+Warzywa,Por,61,1.5,0.3,14
+Warzywa,Szparagi,20,2.2,0.1,3.9
+Warzywa,Czosnek,149,6.4,0.5,33
+Warzywa,Imbir,80,1.8,0.8,18
+Warzywa,Koper włoski,31,1.2,0.2,7
+Produkty Zbożowe,Chleb żytni,250,8.0,1.0,45
+Produkty Zbożowe,Ryż biały,130,2.7,0.3,28
+Produkty Zbożowe,Płatki owsiane,389,17.0,7.0,66
+Produkty Zbożowe,Makaron pełnoziarnisty,124,5.0,1.0,25
+Produkty Zbożowe,Kasza gryczana,343,13.0,3.4,72
+Produkty Zbożowe,Chleb pszenny,265,9.0,3.0,49
+Produkty Zbożowe,Amarantus,371,14.0,7.0,65
+Produkty Zbożowe,Quinoa,120,4.0,2.0,21
+Produkty Zbożowe,Kasza jaglana,378,11.0,4.2,73
+Produkty Zbożowe,Kasza manna,360,10.0,1.0,76
+Produkty Zbożowe,Mąka pszenna,364,10.3,1.0,76
+Produkty Zbożowe,Mąka żytnia,325,9.0,1.5,69
+Produkty Zbożowe,Płatki kukurydziane,378,7.0,0.8,84
+Produkty Zbożowe,Bułka kajzerka,290,8.5,2.0,58
+Produkty Zbożowe,Musli,368,11.0,5.0,68
+Produkty Zbożowe,Kasza jęczmienna,352,9.9,1.2,78
+Produkty Zbożowe,Wafle ryżowe,380,8.0,3.0,81
+Produkty Zbożowe,Chleb orkiszowy,250,8.5,1.5,45
+Produkty Zbożowe,Bagietka,290,8.0,1.2,59
+Nabiał i Jaja,Mleko 3,2%,61,3.3,3.2,4.8
+Nabiał i Jaja,Jogurt naturalny,59,3.5,3.3,4.7
+Nabiał i Jaja,Ser żółty,350,25.0,27.0,1.3
+Nabiał i Jaja,Twaróg chudy,98,19.0,1.0,3.0
+Nabiał i Jaja,Jajko,155,13.0,11.0,1.1
+Nabiał i Jaja,Śmietana 18%,184,2.5,18.0,4.0
+Nabiał i Jaja,Kefir,64,3.3,3.6,4.7
+Nabiał i Jaja,Maślanka,40,3.5,1.0,4.5
+Nabiał i Jaja,Ser feta,265,14.0,21.0,4.1
+Nabiał i Jaja,Ser mozzarella,280,28.0,17.0,3.1
+Nabiał i Jaja,Ser camembert,300,20.0,24.0,0.5
+Nabiał i Jaja,Ser brie,334,21.0,28.0,0.5
+Nabiał i Jaja,Jogurt grecki,97,9.0,5.0,4.0
+Nabiał i Jaja,Lody śmietankowe,207,3.5,11.0,24
+Nabiał i Jaja,Ser topiony,318,10.0,28.0,3.5
+Nabiał i Jaja,Ser kozi,268,21.0,19.0,2.7
+Nabiał i Jaja,Śmietana 30%,293,2.3,30.0,3.2
+Nabiał i Jaja,Ser ricotta,174,11.0,13.0,3.0
+Orzechy i Nasiona,Migdały,579,21.0,50.0,22
+Orzechy i Nasiona,Orzechy włoskie,654,15.0,65.0,14
+Orzechy i Nasiona,Nasiona słonecznika,584,21.0,51.0,20
+Orzechy i Nasiona,Orzechy laskowe,628,15.0,61.0,17
+Orzechy i Nasiona,Orzeszki ziemne,567,26.0,49.0,16
+Orzechy i Nasiona,Nasiona dyni,559,30.0,49.0,11
+Orzechy i Nasiona,Orzechy nerkowca,553,18.0,44.0,30
+Orzechy i Nasiona,Pistacje,560,20.0,45.0,28
+Orzechy i Nasiona,Nasiona chia,486,17.0,31.0,42
+Orzechy i Nasiona,Orzechy brazylijskie,659,14.0,67.0,12
+Orzechy i Nasiona,Orzechy makadamia,718,8.0,76.0,14
+Orzechy i Nasiona,Orzechy pekan,691,9.0,72.0,14
+Orzechy i Nasiona,Nasiona sezamu,573,18.0,50.0,23
+Orzechy i Nasiona,Orzechy piniowe,673,14.0,68.0,13
+Mięso,Kurczak (pierś),165,31.0,3.6,0
+Mięso,Wołowina,250,26.0,15.0,0
+Mięso,Indyk,147,29.0,2.0,0
+Mięso,Schab wieprzowy,242,27.0,14.0,0
+Mięso,Boczek,540,37.0,42.0,0
+Mięso,Szynka wieprzowa,145,22.0,6.0,1
+Mięso,Kiełbasa,300,15.0,27.0,1
+Mięso,Mielonka,315,16.0,28.0,0
+Mięso,Kaczka,337,19.0,28.0,0
+Mięso,Barramundi,92,19.0,1.5,0
+Mięso,Polędwica wołowa,143,26.0,4.0,0
+Mięso,Udko kurczaka,215,26.0,12.0,0
+Ryby,Łosoś,208,20.0,13.0,0
+Ryby,Tuńczyk,144,23.0,5.0,0
+Ryby,Dorsz,82,18.0,0.7,0
+Ryby,Krewetki,99,24.0,0.3,0.2
+Ryby,Makrela,205,19.0,14.0,0
+Ryby,Sardynki,208,25.0,11.0,0
+Ryby,Pstrąg,168,22.0,8.0,0
+Ryby,Okoń,91,19.0,1.0,0
+Ryby,Karp,127,18.0,5.0,0
+Ryby,Miętus,76,17.0,0.5,0
+Ryby,Małże,86,15.0,2.0,3
+Ryby,Kalmary,92,16.0,1.0,3
+Strączki,Ciecierzyca,164,9.0,2.6,27
+Strączki,Soczewica,116,9.0,0.4,20
+Strączki,Fasola czerwona,333,24.0,1.3,60
+Strączki,Soja,446,36.0,20.0,30
+Strączki,Fasola biała,333,24.0,1.3,60
+Strączki,Groch,348,25.0,1.2,63
+Strączki,Tofu,76,8.0,4.8,1.9
+Strączki,Tempeh,193,19.0,11.0,9
+Strączki,Fasola czarna,341,21.0,1.4,62
+Strączki,Fasola pinto,347,21.0,1.2,63
+Strączki,Fasola mung,347,24.0,1.2,63
+Strączki,Soczewica czerwona,116,9.0,0.4,20
+Strączki,Edamame,122,11.0,5.0,10
+Strączki,Bób,88,8.0,0.7,18
+Tłuszcze i Oleje,Oliwa z oliwek,884,0.0,100.0,0
+Tłuszcze i Oleje,Masło,717,0.9,81.0,0.1
+Tłuszcze i Oleje,Olej rzepakowy,884,0.0,100.0,0
+Tłuszcze i Oleje,Margaryna,717,0.0,81.0,0
+Tłuszcze i Oleje,Olej kokosowy,862,0.0,100.0,0
+Tłuszcze i Oleje,Smalec,902,0.0,100.0,0
+Tłuszcze i Oleje,Olej słonecznikowy,884,0.0,100.0,0
+Tłuszcze i Oleje,Olej z awokado,884,0.0,100.0,0
+Tłuszcze i Oleje,Olej sezamowy,884,0.0,100.0,0
+Tłuszcze i Oleje,Tłuszcz gęsi,900,0.0,100.0,0
+Produkty Przetworzone,Ketchup,112,1.0,0.0,27
+Produkty Przetworzone,Majonez,680,1.0,75.0,1.5
+Produkty Przetworzone,Płatki śniadaniowe,379,8.0,5.0,80
+Produkty Przetworzone,Dżem truskawkowy,278,0.4,0.1,69
+Produkty Przetworzone,Chipsy ziemniaczane,536,7.0,35.0,53
+Produkty Przetworzone,Czekolada mleczna,535,7.7,30.0,59
+Produkty Przetworzone,Baton czekoladowy,488,8.0,24.0,60
+Produkty Przetworzone,Pizza mrożona,268,10.0,9.0,37
+Produkty Przetworzone,Hamburger,295,17.0,12.0,31
+Produkty Przetworzone,Frytki,312,3.4,15.0,41
+Produkty Przetworzone,Paluszki słone,370,12.0,4.0,70
+Produkty Przetworzone,Popcorn,387,13.0,4.5,78
+Produkty Przetworzone,Zupa pomidorowa w proszku,380,8.0,10.0,65
+Produkty Przetworzone,Parówki,290,12.0,25.0,2
+Produkty Przetworzone,Konserwa rybna,220,25.0,13.0,0
+Produkty Przetworzone,Biszkopt,380,8.0,5.0,75
+Produkty Przetworzone,Chrupki kukurydziane,387,8.0,3.0,84
+Produkty Przetworzone,Precel,380,9.0,4.0,80
+Produkty Przetworzone,Krakersy,440,7.0,15.0,70
+Napoje,Woda mineralna,0,0.0,0.0,0
+Napoje,Sok pomarańczowy,45,0.7,0.2,10
+Napoje,Sok jabłkowy,46,0.1,0.1,11
+Napoje,Kawa czarna,1,0.1,0.0,0.2
+Napoje,Herbata,1,0.0,0.0,0.3
+Napoje,Napoje gazowane,42,0.0,0.0,10.5
+Napoje,Sok warzywny,30,0.9,0.1,7
+Napoje,Koktajl mleczny,120,3.0,3.5,18
+Napoje,Napoje energetyczne,45,0.0,0.0,11
+Napoje,Mleko sojowe,54,3.3,1.8,6
+Przyprawy,Cukier,387,0.0,0.0,100
+Przyprawy,Miód,304,0.3,0.0,82
+Przyprawy,Sól,0,0.0,0.0,0
+Przyprawy,Pieprz,251,10.0,3.3,64
+Przyprawy,Curry,325,12.0,14.0,58
+Przyprawy,Cynamon,247,4.0,1.2,81
+Przyprawy,Papryka w proszku,282,14.0,13.0,54
+Przyprawy,Bazylia,251,14.0,4.0,61
+Przyprawy,Oregano,265,9.0,4.3,69
+Przyprawy,Musztarda,66,4.4,3.3,5
+Inne,Gorzka czekolada,546,5.0,31.0,56
+Inne,Mleko kokosowe,230,2.0,24.0,6
+Inne,Ocet winny,19,0.0,0.0,0.9
+Inne,Kakao w proszku,228,20.0,14.0,58
+Inne,Drożdże piekarnicze,105,17.0,1.9,9
+Inne,Żelatyna,355,85.0,0.1,0.7
+Inne,Kostka rosołowa,300,10.0,25.0,15
+Inne,Proszek do pieczenia,53,0.1,0.0,27
+Inne,Sos sojowy,53,8.0,0.1,4.9
+Inne,Żelatyna spożywcza,335,86.0,0.1,0.7
+Produkty Zbożowe,Chleb tostowy,265,9.0,3.0,49
+Produkty Zbożowe,Makaron spaghetti,130,5.0,1.0,25
+Produkty Zbożowe,Tortilla,250,8.0,3.0,45
+Produkty Zbożowe,Ciasto kruche,400,6.0,20.0,50
+Produkty Zbożowe,Gnocchi,150,5.0,1.0,30
+Nabiał i Jaja,Śmietanka kremówka,300,2.5,30.0,3.0
+Nabiał i Jaja,Ser biały,150,18.0,5.0,3.0
+Nabiał i Jaja,Mleko migdałowe,30,1.0,2.5,1.0
+Mięso,Mielone mięso wołowe,250,26.0,15.0,0
+Ryby,Filet z łososia,208,20.0,13.0,0
+Ryby,Krewetki,99,24,0.3,0.2
+Strączki,Ciecierzyca,164,9.0,2.6,27
+Strączki,Soczewica czerwona,116,9.0,0.4,20
+Tłuszcze i Oleje,Olej roślinny,884,0.0,100.0,0
+Produkty Przetworzone,Sos teriyaki,150,3.0,1.0,30
+Produkty Przetworzone,Bulion warzywny,10,1.0,0.5,1.0
+Produkty Przetworzone,Pasta tahini,595,17.0,53.0,21
+Produkty Przetworzone,Pasta miso,200,12.0,6.0,25
+Produkty Przetworzone,Wodorosty nori,35,6.0,0.5,5.0
+Produkty Przetworzone,Dżem truskawkowy,278,0.4,0.1,69
+Przyprawy,Szafran,310,11.0,6.0,65
+Przyprawy,Przyprawa curry,325,12.0,14.0,58
+Inne,Masło czosnkowe,700,1.0,80.0,1.0
+Inne,Proszek proteinowy,400,80.0,5.0,10

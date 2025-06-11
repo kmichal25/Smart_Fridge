@@ -1,0 +1,6 @@
+diet_id,diet_name,description,allowed_categories,excluded_categories
+1,wegetariańska,"Dieta bezmięsna, dopuszcza nabiał i jaja","Nabiał i Jaja,Produkty Zbożowe,Warzywa,Owoce,Strączki,Orzechy i Nasiona,Tłuszcze i Oleje","Mięso,Ryby"
+2,wegańska,"Dieta roślinna, bez produktów odzwierzęcych","Warzywa,Owoce,Strączki,Orzechy i Nasiona,Tłuszcze i Oleje,Produkty Zbożowe","Mięso,Ryby,Nabiał i Jaja"
+3,bezglutenowa,"Dieta wykluczająca gluten","Warzywa,Owoce,Mięso,Ryby,Nabiał i Jaja,Orzechy i Nasiona,Tłuszcze i Oleje","Produkty Zbożowe (z glutenem)"
+4,wysokobialkowa,"Dieta bogata w białko","Mięso,Ryby,Nabiał i Jaja,Strączki,Orzechy i Nasiona","Produkty wysokowęglowodanowe"
+5,śródziemnomorska,"Dieta oparta na kuchni śródziemnomorskiej","Ryby,Oliwa z oliwek,Warzywa,Strączki,Owoce,Orzechy","Mięso czerwone,Produkty przetworzone"

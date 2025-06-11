@@ -1,0 +1,277 @@
+recipe_id,ingredient_name,quantity,unit
+1,masło,50,g
+1,jajko,240,g
+1,sól,5,g
+1,pieprz,2,g
+1,szczypiorek,10,g
+2,makaron spaghetti,300,g
+2,boczek wędzony,150,g
+2,jajko,120,g
+2,ser parmezan,50,g
+3,pomidor,450,g
+3,ogórek,200,g
+3,czerwona cebula,75,g
+3,oliwki czarne,100,g
+3,ser feta,150,g
+3,oliwa z oliwek,30,g
+4,ciecierzyca,400,g
+4,mleko kokosowe,400,g
+4,cebula,100,g
+4,czosnek,15,g
+4,przyprawa curry,10,g
+5,banan,240,g
+5,jajko,120,g
+5,mąka pszenna,100,g
+5,olej roślinny,30,g
+6,pomidor,1000,g
+6,marchew,150,g
+6,seler,100,g
+6,bulion warzywny,1000,g
+7,filet z kurczaka,500,g
+7,sos teriyaki,100,g
+8,pomidor,800,g
+8,jajko,180,g
+9,masło,200,g
+9,czekolada gorzka,200,g
+9,jajko,240,g
+9,cukier,150,g
+9,mąka pszenna,100,g
+9,orzechy włoskie,50,g
+10,jagody,200,g
+10,jogurt naturalny,150,g
+10,mleko,100,g
+11,ryż arborio,300,g
+11,cebula,100,g
+11,pieczarka,200,g
+11,bulion warzywny,1000,g
+12,awokado,400,g
+12,chleb tostowy,160,g
+13,mięso wołowe,800,g
+13,cebula,200,g
+13,marchew,225,g
+14,jajko,240,g
+14,papryka,150,g
+14,cukinia,250,g
+15,ciecierzyca,400,g
+15,pasta tahini,50,g
+15,czosnek,10,g
+15,oliwa z oliwek,30,g
+16,filet z łososia,400,g
+16,sól,5,g
+16,cytryna,75,g
+17,mięso mielone,500,g
+17,cebula,200,g
+17,fasola czerwona,400,g
+18,mąka pszenna,300,g
+18,jajko,120,g
+18,ser biały,200,g
+19,filet z kurczaka,300,g
+19,sałata rzymska,300,g
+19,grzanki,100,g
+20,szpinak,100,g
+20,banan,120,g
+20,mleko migdałowe,200,g
+21,ziemniak,600,g
+21,jajko,240,g
+22,ciecierzyca,400,g
+23,brokuł,500,g
+24,filet z kurczaka,600,g
+24,pomidor,400,g
+25,ciasto kruche,300,g
+25,ser twarogowy,500,g
+25,śmietanka kremówka,200,g
+25,truskawki,200,g
+26,bakłażan,300,g
+26,cukinia,250,g
+26,papryka,300,g
+27,kasza jaglana,200,g
+27,marchew,150,g
+27,por,100,g
+28,cebula,200,g
+28,marchew,225,g
+28,bulion warzywny,1500,g
+28,makaron,100,g
+29,mąka pszenna,300,g
+29,jajko,120,g
+29,jagody,200,g
+30,mięso wołowe,600,g
+30,podgrzybek,200,g
+30,śmietana 18%,200,g
+31,awokado,400,g
+31,pomidor,150,g
+31,cebula czerwona,75,g
+32,filet z kurczaka,500,g
+32,papryka,300,g
+32,tortilla,200,g
+33,komosa ryżowa,200,g
+33,awokado,200,g
+33,pomidor koktajlowy,300,g
+34,cebula,200,g
+34,ogórek kiszony,300,g
+34,bulion warzywny,1500,g
+35,banan,360,g
+35,mąka pszenna,300,g
+35,jajko,120,g
+36,krewetki,300,g
+36,masło,50,g
+36,czosnek,15,g
+37,ryż arborio,300,g
+37,bulion warzywny,1000,g
+37,szafran,1,g
+38,płatki owsiane,300,g
+38,miód,100,g
+38,rodzynka,100,g
+39,pomidor,500,g
+39,cukinia,250,g
+39,jajko,180,g
+40,ziemniak,1000,g
+40,ser twarogowy,300,g
+40,mąka pszenna,500,g
+41,kalafior,800,g
+42,ziemniak,600,g
+42,jajko,360,g
+43,soczewica czerwona,300,g
+43,marchew,150,g
+44,pasta miso,50,g
+44,tofu,200,g
+44,wodorosty nori,10,g
+45,mąka pszenna,300,g
+45,czekolada deserowa,200,g
+45,jajko,180,g
+46,rukola,100,g
+46,ser kozi,100,g
+46,orzech włoski,50,g
+47,filet z kurczaka,500,g
+47,pieczarka,300,g
+47,śmietana 18%,200,g
+48,nasiona chia,50,g
+48,mleko kokosowe,300,g
+49,ciecierzyca,400,g
+49,cebula,100,g
+50,mąka pszenna,300,g
+50,jabłko,450,g
+50,jajko,120,g
+51,dynia,1000,g
+51,imbir,20,g
+52,fasola czerwona,400,g
+52,papryka,300,g
+52,tortilla,200,g
+53,tuńczyk w oleju,200,g
+53,jajko,120,g
+53,kukurydza,100,g
+54,chleb bagietka,250,g
+54,masło,50,g
+54,czosnek,15,g
+55,ogórek gruntowy,400,g
+55,śmietana 18%,150,g
+56,chleb tostowy,160,g
+56,jajko,120,g
+56,cynamon,5,g
+57,mąka z ciecierzycy,200,g
+57,woda,300,g
+58,cukinia,250,g
+58,bakłażan,300,g
+58,pomidor,400,g
+59,proszek proteinowy,30,g
+59,mleko,300,g
+60,mąka pszenna,400,g
+60,jabłko,1000,g
+61,awokado,400,g
+61,jajko,120,g
+62,szczaw,300,g
+62,ziemniak,600,g
+62,bulion warzywny,1500,g
+63,płatki owsiane,300,g
+63,rodzynka,100,g
+63,miód,100,g
+64,kapusta kiszona,500,g
+64,groch,300,g
+65,makaron penne,300,g
+65,pomidor,400,g
+65,czosnek,15,g
+66,burak,600,g
+66,ser kozi,100,g
+66,orzech włoski,50,g
+67,kasza jaglana,150,g
+67,mleko,400,g
+67,banan,120,g
+68,filet z kurczaka,500,g
+68,masło orzechowe,100,g
+69,kasza bulgur,200,g
+69,pietruszka,50,g
+69,pomidor,300,g
+70,mąka migdałowa,300,g
+70,migdał,100,g
+71,bulion warzywny,1500,g
+71,makaron ryżowy,200,g
+71,cebula dymka,75,g
+72,mąka pszenna,300,g
+72,jajko,180,g
+72,banan,120,g
+73,ziemniak,1000,g
+73,mąka pszenna,200,g
+74,filet z kurczaka,300,g
+74,pomidor koktajlowy,300,g
+74,ogórek,200,g
+75,pieczarka,500,g
+75,śmietana 18%,200,g
+76,chleb bagietka,250,g
+76,pomidor,450,g
+76,bazylia,10,g
+77,soczewica czerwona,300,g
+77,przyprawa curry,10,g
+78,ser twarogowy,1000,g
+78,jajko,300,g
+78,rodzynka,100,g
+79,gnocchi,500,g
+79,pomidor,400,g
+80,filet z łososia,300,g
+80,awokado,200,g
+80,rukola,50,g
+81,kasza jęczmienna,200,g
+81,marchew,225,g
+81,seler,100,g
+82,mąka pszenna,500,g
+82,dżem truskawkowy,200,g
+83,tofu,400,g
+83,papryka,150,g
+84,batat,1000,g
+84,chili,5,g
+85,schab bez kości,600,g
+85,ziemniak,1000,g
+86,ciasto francuskie,400,g
+86,szpinak,300,g
+86,ser feta,200,g
+87,kasza jaglana,300,g
+87,papryka,300,g
+87,ser żółty,150,g
+88,banan,240,g
+88,truskawka,100,g
+89,mięso mielone,500,g
+89,kukurydza,200,g
+89,fasola czerwona,400,g
+90,kalafior,800,g
+90,bułka tarta,100,g
+91,groszek zielony,500,g
+91,mięta,10,g
+91,cytryna,75,g
+92,banan,240,g
+92,jajko,120,g
+93,krewetka,300,g
+93,awokado,200,g
+93,cytryna,75,g
+94,filet z kurczaka,600,g
+94,miód,100,g
+95,banan,360,g
+96,burak,600,g
+96,kefir,500,g
+97,tofu,400,g
+97,papryka,300,g
+98,makaron,400,g
+98,ser żółty,200,g
+98,szpinak,200,g
+99,mięso mielone,600,g
+99,ziemniak,1000,g
+99,ogórek,400,g
+100,ciasto kruche,400,g
+100,truskawka,300,g
