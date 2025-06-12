@@ -13,7 +13,7 @@
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <nav class="nav-links" id="navLinks">
       <a href="{{ url_for('dashboard') }}" class="nav-btn">Twoja lodówka</a>
-      <a href="{{ url_for('add_product') }}" class="nav-btn">Dodaj produkt</a>
+      <a href="{{ url_for('add-product') }}" class="nav-btn">Dodaj produkt</a>
       <a href="{{ url_for('recipes') }}" class="nav-btn">Dostępne przepisy</a>
       <a href="{{ url_for('notifications') }}" class="nav-btn">Powiadomienia</a>
       <a href="{{ url_for('wyloguj') }}" class="nav-btn logout">Wyloguj się</a>
@@ -32,7 +32,7 @@
           <button class="btn-secondary">Zobacz przepis</button>
         </a>
       </div>
-      <img src="{{ url_for('static', filename='placeholder.jpg') }}" alt="{{ recipe.title }}">
+      <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}" class="recipe-img" />
     </div>
     {% endfor %}
 

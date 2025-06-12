@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 import json
 import csv
-
+import requests
+import re
 app = Flask(__name__, static_folder='static', template_folder='templates')
+
+API_KEY = '50809115-7134a20d0f08bf7c5cbb7fed6'
 
 # Wczytaj produkty z pliku JSON
 def load_products():
@@ -23,15 +26,17 @@ def load_recipes():
     with open('recipes.csv', newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
+            row['id'] = int(row['id'])  # Konwersja id na int
             row['prep_time'] = int(row['prep_time'])
             row['cook_time'] = int(row['cook_time'])
             recipes.append(row)
     return recipes
 
+
 # Ładowanie składników
 def load_ingredients():
     ingredients = {}
-    with open('ingredients.csv', newline='', encoding='utf-8') as csvfile:
+    with open('recipe_ingredients.csv', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             rid = row['recipe_id']
@@ -40,27 +45,99 @@ def load_ingredients():
             ingredients[rid].append(row)
     return ingredients
 
+def load_ingredient_details():
+    details = {}
+    with open('ingredients.csv', newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            details[row['product']] = row
+    return details
+
+def load_recipe_ingredients(recipe_id):
+    all_ingredients_info = load_ingredient_details()
+    recipe_ings = []
+    with open('recipe_ingredients.csv', newline='', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row['recipe_id'] == str(recipe_id):
+                product_name = row['ingredient_name']
+                info = all_ingredients_info.get(product_name, {})
+                recipe_ings.append({
+                    'name': product_name,
+                    'quantity': row.get('quantity', ''),
+                    'unit': row.get('unit', ''),
+                    'category': info.get('category', 'Brak kategorii'),
+                    'calories': info.get('calories', 'brak danych'),
+                    'protein': info.get('protein', ''),
+                    'fat': info.get('fat', ''),
+                    'carbs': info.get('carbs', '')
+                })
+    return recipe_ings
+
+
 @app.route('/')
 def index():
     recipes = load_recipes()
     return render_template('login.html', recipes=recipes)
 
-@app.route('/recipes')
-def recipes():
-    recipes = load_recipes()
-    return render_template('recipes.html', recipes=recipes)
 
 @app.route('/recipe/<int:recipe_id>')
 def recipe_detail(recipe_id):
     recipes = load_recipes()
-    ingredients = load_ingredients()
-
-    recipe = next((r for r in recipes if int(r['id']) == recipe_id), None)
-    if recipe is None:
+    recipe = next((r for r in recipes if r['id'] == recipe_id), None)
+    if not recipe:
         return "Przepis nie istnieje", 404
 
-    ing = ingredients.get(str(recipe_id), [])
-    return render_template('recipe_detail.html', recipe=recipe, ingredients=ing)
+    # oczyszczone instrukcje – według wcześniejszego rozwiązania
+    instructions = recipe['instructions'].replace('\\n', '\n')
+    lines = [re.sub(r'^\d+\.\s*', '', line).strip() for line in instructions.split('\n')]
+    recipe['instructions'] = '\\n'.join(lines)
+
+    ingredients = load_recipe_ingredients(recipe_id)
+
+    query = recipe['title']
+    try:
+        resp = requests.get(
+            'https://pixabay.com/api/',
+            params={'key': API_KEY, 'q': query, 'image_type': 'photo', 'orientation': 'horizontal', 'lang': 'pl', 'per_page': 3}
+        )
+        data = resp.json()
+        hits = data.get('hits', [])
+        image_url = hits[0]['webformatURL'] if hits else url_for('static', filename='placeholder.jpg')
+    except Exception:
+        image_url = url_for('static', filename='placeholder.jpg')
+
+    return render_template('recipe_detail.html', recipe=recipe, ingredients=ingredients, image_url=image_url)
+
+@app.route('/recipes')
+def recipes():
+    recipes = load_recipes()
+    enriched_recipes = []
+
+    for recipe in recipes:
+        query = recipe['title']
+        try:
+            resp = requests.get(
+                'https://pixabay.com/api/',
+                params={
+                    'key': API_KEY,
+                    'q': query,
+                    'image_type': 'photo',
+                    'orientation': 'horizontal',
+                    'lang': 'pl',
+                    'per_page': 1
+                }
+            )
+            data = resp.json()
+            hits = data.get('hits', [])
+            image_url = hits[0]['webformatURL'] if hits else url_for('static', filename='placeholder.jpg')
+        except Exception:
+            image_url = url_for('static', filename='placeholder.jpg')
+
+        recipe['image_url'] = image_url
+        enriched_recipes.append(recipe)
+
+    return render_template('recipes.html', recipes=enriched_recipes)
 
 @app.route('/products.html')
 def products_page():
@@ -100,6 +177,10 @@ def wyloguj():
 def dashboard():
     # kod widoku
     return render_template('dashboard.html')
+
+@app.route('/add-product', methods=['GET'], endpoint='add-product')
+def add_product_form():
+    return render_template('add-product.html')
 
 if __name__ == "__main__":
     app.run(port=3005, debug=True)

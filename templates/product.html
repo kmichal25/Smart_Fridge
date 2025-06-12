@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Twoja lodówka</title>
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head> 
 
 <body>
 
   <!-- pasek górny -->
   <header class="top-bar">
-    <img src="SmartFridgelogo.jpg" alt="Logo" class="logo-img" />
+    <img src="{{ url_for('static', filename='SmartFridgelogo.jpg') }}" alt="Smart Fridge Logo" class="logo-img" />
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <nav class="nav-links" id="navLinks">
-      <button class="nav-btn">Twoja lodówka</button>
-   <button id="addProductBtn" class="nav-btn">Dodaj produkt</button>
-      <button class="nav-btn">Dostępne przepisy</button>
-      <button class="nav-btn">Powiadomienia</button>
-      <button class="nav-btn logout">Wyloguj się</button>
+      <a href="{{ url_for('dashboard') }}" class="nav-btn">Twoja lodówka</a>
+      <a href="{{ url_for('add-product') }}" class="nav-btn">Dodaj produkt</a>
+      <a href="{{ url_for('recipes') }}" class="nav-btn">Dostępne przepisy</a>
+      <a href="{{ url_for('notifications') }}" class="nav-btn">Powiadomienia</a>
+      <a href="{{ url_for('wyloguj') }}" class="nav-btn logout">Wyloguj się</a>
     </nav>
   </header>
   
