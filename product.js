@@ -112,30 +112,29 @@ document.addEventListener("DOMContentLoaded", async () => {
   deleteProduct(product.name);
 });
 
-document.querySelector(".btn-primary").addEventListener("click", () => {
-  deleteProduct(product.name);
-});
+ document.querySelector(".btn-primary").addEventListener("click", () => {
+    deleteProduct(product.name);
+  });
 
-function deleteProduct(name) {
-  fetch(`http://localhost:3005/products/${encodeURIComponent(name)}`, {
-    method: 'DELETE',
-  })
-    .then(res => {
-      if (!res.ok) throw new Error("Nie udało się usunąć produktu.");
-      return res.json();
-    })
-    .then(() => {
-      showModal("Produkt został usunięty z lodówki.");
-      setTimeout(() => {
-        window.location.href = "dashboard.html"; // powrót do lodówki
-      }, 1500);
-    })
-    .catch(err => {
-      console.error('Błąd przy usuwaniu:', err);
-      showModal("Błąd przy usuwaniu produktu.");
-    });
-}
-
+  function deleteProduct(name) {
+    fetch("products.json")
+      .then(response => response.json())
+      .then(products => {
+        const updatedProducts = products.filter(p => p.name.toLowerCase() !== name.toLowerCase());
+        // In a real app, you would save updatedProducts back to the server
+        return updatedProducts;
+      })
+      .then(() => {
+        showModal("Produkt został usunięty z lodówki.");
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1500);
+      })
+      .catch(err => {
+        console.error('Błąd przy usuwaniu:', err);
+        showModal("Błąd przy usuwaniu produktu.");
+      });
+  }
 
   } catch (err) {
     console.error("Błąd podczas ładowania danych:", err);
