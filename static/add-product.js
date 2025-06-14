@@ -38,3 +38,7 @@ document.getElementById('addProductBtn').addEventListener('click', async () => {
   }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('expiryDate').value = today;
+});

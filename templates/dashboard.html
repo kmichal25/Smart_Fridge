@@ -13,10 +13,10 @@
     <div class="hamburger" onclick="toggleMenu()">☰</div>
 
     <nav class="nav-links" id="navLinks">
-      <button class="nav-btn">Twoja lodówka</button> <!-- nic nie dajemy bo to jest to -->
+      <a href="{{ url_for('dashboard.dashboard') }}"><button class="nav-btn">Twoja lodówka</button></a>
       <a href="{{ url_for('dashboard.add_product') }}"><button class="nav-btn">Dodaj produkt</button></a>
-      <button class="nav-btn">Dostępne przepisy</button> <!-- dodajcie tutaj odnosnik -->
-      <button class="nav-btn">Powiadomienia</button> <!-- dodajcie tutaj odnosnik -->
+      <a href="{{ url_for('dashboard.recipes') }}"><button class="nav-btn">Dostępne przepisy</button></a>
+      <a href="{{ url_for('dashboard.notifications') }}"><button class="nav-btn">Powiadomienia</button></a>
       <a href="{{ url_for('auth.logout') }}"><button class="nav-btn logout">Wyloguj się</button></a>
     </nav>
   </header>
