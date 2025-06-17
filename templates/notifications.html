@@ -70,17 +70,15 @@
                 <p><strong>${p.name}</strong> jest <span style="color:red;">przeterminowany</span>!</p>
                 <div class="notification-buttons">
                   <button class="btn-primary" onclick="deleteProduct('${p.name}')">Usuń produkt</button>
-                 <button class="btn-secondary" onclick="ignoreNotification('${p.name}', this)">Ignoruj</button>
-
-
+                  <button class="btn-secondary" onclick="ignoreNotification('${p.name}', this)">Ignoruj</button>
                 </div>
               `;
             } else {
               notif.innerHTML = `
-                <p><strong>${p.name}</strong> za niedługo się zepsuje (za ${diffDays} dni).</p>
+                <p><strong>${p.name}</strong> wkrótce się zepsuje (za ${diffDays} dni).</p>
                 <div class="notification-buttons">
                   <button class="btn-primary" onclick="window.location.href='{{ url_for('dashboard.recipes') }}'">Zobacz dostępne przepisy</button>
-                  <button class="btn-secondary" onclick="ignoreNotification('${p.name}')">Ignoruj</button>
+                  <button class="btn-secondary" onclick="ignoreNotification('${p.name}', this)">Ignoruj</button>
                 </div>
               `;
             }
@@ -104,26 +102,25 @@
       })
       .then(res => {
         if (res.ok) {
-          alert(`Produkt "${name}" usunięty.`);
-          fetchNotifications();
+          fetchNotifications(); // Odśwież listę bez alertu
         } else {
-          alert('Błąd podczas usuwania produktu.');
+          console.error('Błąd podczas usuwania produktu.');
         }
       });
     }
 
     function ignoreNotification(name, button) {
-  alert(`Powiadomienie dla "${name}" zignorowane.`);
-  const notifElement = button.closest('.notification-item');
-  if (notifElement) {
-    notifElement.remove();
-  }
+      const notifElement = button.closest('.notification-item');
+      if (notifElement) {
+        notifElement.remove();
+      }
 
-  const notificationsContainer = document.getElementById('notificationsList');
-  if (!notificationsContainer.hasChildNodes()) {
-    notificationsContainer.innerHTML = '<p>Brak nowych powiadomień.</p>';
-  }
-}
+      const notificationsContainer = document.getElementById('notificationsList');
+      if (!notificationsContainer.hasChildNodes()) {
+        notificationsContainer.innerHTML = '<p>Brak nowych powiadomień.</p>';
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', fetchNotifications);
   </script>
 </body>
