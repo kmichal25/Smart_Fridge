@@ -1,84 +1,134 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8"><script>/* <![CDATA[ */ ringDataLayer = {"context":{"variant":{"accelerator":"ZG93bmxvYWQucG9jenRhLm9uZXQucGw6OnByb2Rfd2l0aF91c2VyX2RhdGFfZG93bmxvYWRlcl9pbl9hd3NfMg=="},"id":{"website":"9481b0b7-7c3d-463b-8f3c-9de5c8289e21"}}}; /* ]]> */</script><script>/* <![CDATA[ */ accConf = {"events":{"endpointPaths":["/a8f4d8cd95e164917035b64b867a45dd"]}}; /* ]]> */</script>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Twoja lodówka</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head> 
 
 <body>
 
-    <!-- pasek górny -->
-    <header class="top-bar">
-      <img src="SmartFridgelogo.jpg" alt="Logo" class="logo-img" />
-  
-      <!-- hamburger (dla małych urządzeń)) -->
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
-  
-      <!-- przyciski menu -->
-      <nav class="nav-links" id="navLinks">
+  <header class="top-bar">
+    <img src="{{ url_for('static', filename='img/SmartFridgelogo.jpg') }}" alt="Logo" class="logo-img" />
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav class="nav-links" id="navLinks">
       <a href="{{ url_for('dashboard.dashboard') }}"><button class="nav-btn">Twoja lodówka</button></a>
       <a href="{{ url_for('dashboard.add_product') }}"><button class="nav-btn">Dodaj produkt</button></a>
       <a href="{{ url_for('dashboard.recipes') }}"><button class="nav-btn">Dostępne przepisy</button></a>
-      <a href="{{ url_for('dashboard.notifications') }}"><button class="nav-btn">Produkty</button></a>
+      <a href="{{ url_for('dashboard.notifications') }}"><button class="nav-btn">Powiadomienia</button></a>
       <a href="{{ url_for('auth.logout') }}"><button class="nav-btn logout">Wyloguj się</button></a>
-      </nav>
-    </header>
-
-    <div class="product-card">
-        <h2>Jogurt naturalny</h2>
-        <p><strong>Ilość:</strong> 2 szt.<br>
-           <strong>Gramatura:</strong> 300 g<br>
-           <strong>Data ważności:</strong> 2025-05-15</p>
-        <div class="progress-bar">
-          <div class="progress">3 dni do końca</div>
-        </div>
-      
-        <div class="nutrition">
-          <div><strong>120</strong><br>kcal/100g</div>
-          <div><strong>5g</strong><br>białko</div>
-          <div><strong>4g</strong><br>tłuszcze</div>
-          <div><strong>12g</strong><br>węglowodany</div>
-        </div>
-      
-        <button class="btn-primary">Zjedzono/usuń</button>
-      </div>
-      
-      <div class="recipe-section">
-        <h2>Przepisy z jogurtem</h2>
-      
-        <div class="recipe-card">
-          <div class="recipe-text">
-            <h3>Smoothie z bananem</h3>
-            <p>Czas: 10 minut | Składników: 4</p>
-            <button class="btn-secondary">Zobacz przepis</button>
-          </div>
-          <img src="smoothie.jpg" alt="Smoothie z bananem">
-        </div>
-      
-        <div class="recipe-card">
-          <div class="recipe-text">
-            <h3>Tzatziki domowe</h3>
-            <p>Czas: 15 minut | Składników: 3</p>
-            <button class="btn-secondary">Zobacz przepis</button>
-          </div>
-          <img src="tzatziki.jpg" alt="Tzatziki domowe">
-        </div>
-      
-        <button class="btn-primary full-width">Inne przepisy</button>
-      </div>
-      
+    </nav>
+  </header>
   
- 
-    
-    <!-- małe przydatności do testów -->  
-    <script>
-        function toggleMenu() {
-        document.getElementById('navLinks').classList.toggle('open');
+  <div class="product-card">
+    <h2>{{ product.name }}</h2>
+    <p></p>
+    <div class="progress-bar">
+      <div class="progress">Wczytywanie...</div>
+    </div>
+
+    <div class="nutrition">
+      <div>Białko: {{ nutrition.protein or 'Brak danych' }} g</div>
+      <div>Tłuszcze: {{ nutrition.fat or 'Brak danych' }} g</div>
+      <div>Węglowodany: {{ nutrition.carbs or 'Brak danych' }} g</div>
+      <div>Kalorie: {{ nutrition.calories or 'Brak danych' }} kcal</div>
+        <small>(wartości na 100g produktu)</small>
+    </div>
+
+    <div class="expiry-date">
+      <strong>Data ważności:</strong> {{ product.expiry_date or 'Brak daty ważności' }}
+    </div>
+    <button class="btn-primary" id="deleteBtn">Zjedzono/usuń</button>
+
+  </div>
+
+  <div id="productDetails" style="margin-top: 1em; color: red; font-weight: bold;"></div>
+
+  <div id="modalMessage" style="display:none;">Produkt został usunięty</div>
+  <div id="modalOverlay" style="display:none;"></div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+  </script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const progressText = document.querySelector(".progress");
+  const progressBar = document.querySelector(".progress-bar .progress");
+
+  const expiryDateStr = "{{ product.expiry_date }}";
+
+  if (!expiryDateStr) {
+    progressText.textContent = "Brak danych o dacie ważności.";
+    progressBar.style.backgroundColor = "gray";
+    return;
+  }
+
+  const today = new Date();
+  const expiryDate = new Date(expiryDateStr);
+
+  const diffTime = expiryDate - today;
+  const remainingDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  if (remainingDays < 0) {
+    progressText.textContent = "Produkt przeterminowany!";
+    progressBar.style.width = "100%";
+    progressBar.style.backgroundColor = "#d9534f"; 
+  } else {
+    progressText.textContent = `Pozostało ${remainingDays} dni`;
+    let percentage = Math.min(100, Math.round(((30 - remainingDays) / 30) * 100));
+    if (percentage < 0) percentage = 0;
+
+    progressBar.style.width = percentage + "%";
+
+    if (percentage < 50) {
+      progressBar.style.backgroundColor = "#5cb85c"; 
+    } else if (percentage < 80) {
+      progressBar.style.backgroundColor = "#f0ad4e"; 
+    } else {
+      progressBar.style.backgroundColor = "#d9534f"; 
+    }
+  }
+});
+</script>
+
+  <script>
+    document.getElementById("deleteBtn").addEventListener("click", async () => {
+      const encodedName = encodeURIComponent("{{ product.name }}");
+
+      try {
+        const res = await fetch(`/products/${encodedName}`, {
+          method: "DELETE",
+          credentials: "include"
+        });
+
+        if (res.ok) {
+          document.getElementById("modalMessage").style.display = "block";
+          document.getElementById("modalOverlay").style.display = "block";
+          document.getElementById("modalMessage").textContent = "Produkt został usunięty.";
+
+          setTimeout(() => {
+            window.location.href = "{{ url_for('dashboard.dashboard') }}";
+          }, 2000);
+        } else {
+          const data = await res.json();
+          document.getElementById("productDetails").textContent = data.error || "Nie udało się usunąć produktu.";
         }
-
-    </script>
-
+      } catch (error) {
+        document.getElementById("productDetails").textContent = "Błąd połączenia z serwerem.";
+      }
+    });
+  </script>
+  <div id="modalOverlay"></div>
+  <div id="modalMessage">Produkt został usunięty</div>
+  <script>
+    document.getElementById("modalOverlay").addEventListener("click", () => {
+      document.getElementById("modalMessage").style.display = "none";
+      document.getElementById("modalOverlay").style.display = "none";
+    });
+  </script>
 </body>
 </html>

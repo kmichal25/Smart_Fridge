@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <!-- pasek górny -->
   <header class="top-bar">
     <img src="{{ url_for('static', filename='img/SmartFridgelogo.jpg') }}" alt="Logo" class="logo-img" />
     <div class="hamburger" onclick="toggleMenu()">☰</div>
@@ -17,17 +16,16 @@
       <a href="{{ url_for('dashboard.recipes') }}"><button class="nav-btn">Dostępne przepisy</button></a>
       <a href="{{ url_for('dashboard.notifications') }}"><button class="nav-btn">Powiadomienia</button></a>
       <a href="{{ url_for('auth.logout') }}"><button class="nav-btn logout">Wyloguj się</button></a>
-     </nav>
+    </nav>
   </header>
 
   <div class="recipe-section">
     <h2>Przepisy</h2>
-
     {% for recipe in recipes %}
     <div class="recipe-card">
       <div class="recipe-text">
         <h3>{{ recipe.title }}</h3>
-        <p>Czas: {{ recipe.prep_time + recipe.cook_time }} minut</p>
+        <p>Czas: {{ (recipe.prep_time | int) + (recipe.cook_time | int) }} minut</p>  
         <a href="{{ url_for('dashboard.recipe_detail', recipe_id=recipe.id) }}">
           <button class="btn-secondary">Zobacz przepis</button>
         </a>
@@ -35,10 +33,7 @@
       <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}" class="recipe-img" />
     </div>
     {% endfor %}
-
-    <button class="button full-width">Więcej</button>
   </div>
-
   <script>
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('open');

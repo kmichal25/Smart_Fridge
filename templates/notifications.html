@@ -29,6 +29,32 @@
       flex: 1 1 auto;
       min-width: 140px;
     }
+
+    /* Styl modala z komunikatem */
+    #modalMessage {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 1.5em 2em;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 1000;
+      font-size: 1.2em;
+      text-align: center;
+      max-width: 80%;
+      word-wrap: break-word;
+      color: black; /* aby tekst był widoczny */
+    }
+
+    #modalOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
@@ -47,6 +73,10 @@
     <h2 class="section-title">Powiadomienia o produktach</h2>
     <div id="notificationsList"></div>
   </main>
+
+  <!-- Modal komunikatu -->
+  <div id="modalOverlay"></div>
+  <div id="modalMessage"></div>
 
   <script>
     async function fetchNotifications() {
@@ -87,12 +117,26 @@
           }
         });
 
-        if (!notificationsContainer.hasChildNodes()) {
+        if (notificationsContainer.children.length === 0) {
           notificationsContainer.innerHTML = '<p>Brak nowych powiadomień.</p>';
         }
       } catch (err) {
         console.error('Błąd ładowania powiadomień:', err);
       }
+    }
+
+    function showMessage(message) {
+      const modalMessage = document.getElementById('modalMessage');
+      const modalOverlay = document.getElementById('modalOverlay');
+
+      modalMessage.textContent = message;
+      modalMessage.style.display = 'block';
+      modalOverlay.style.display = 'block';
+
+      setTimeout(() => {
+        modalMessage.style.display = 'none';
+        modalOverlay.style.display = 'none';
+      }, 2000);
     }
 
     function deleteProduct(name) {
@@ -102,10 +146,15 @@
       })
       .then(res => {
         if (res.ok) {
-          fetchNotifications(); // Odśwież listę bez alertu
+          showMessage('Produkt został usunięty.');
+          fetchNotifications();
         } else {
+          showMessage('Błąd podczas usuwania produktu.');
           console.error('Błąd podczas usuwania produktu.');
         }
+      })
+      .catch(() => {
+        showMessage('Błąd połączenia z serwerem.');
       });
     }
 
@@ -116,10 +165,15 @@
       }
 
       const notificationsContainer = document.getElementById('notificationsList');
-      if (!notificationsContainer.hasChildNodes()) {
+      if (notificationsContainer.children.length === 0) {
         notificationsContainer.innerHTML = '<p>Brak nowych powiadomień.</p>';
       }
     }
+
+    document.getElementById('modalOverlay').addEventListener('click', () => {
+      document.getElementById('modalMessage').style.display = 'none';
+      document.getElementById('modalOverlay').style.display = 'none';
+    });
 
     window.addEventListener('DOMContentLoaded', fetchNotifications);
   </script>

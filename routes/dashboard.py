@@ -1,15 +1,14 @@
-from flask import Blueprint, render_template, request, jsonify, url_for, redirect, session
+from flask import Blueprint, render_template, request, jsonify, url_for, redirect, session, current_app
 from flask_login import login_required, current_user
 from models import Product, db
-from product import load_recipes, load_recipe_ingredients, load_products, load_ingredients, recipe_possible
-from product import get_user_ingredients, load_ingredient_names, load_ingredient_details
+from product import load_recipes, load_recipe_ingredients, load_products, load_ingredients, load_ingredient_names, get_pixabay_image_url, API_KEY
 import requests
 import re
 import csv
+import os
 
 
 dashboard_bp = Blueprint('dashboard', __name__)
-API_KEY = 'your_api_key_here'
 
 @dashboard_bp.route('/')
 def index():
@@ -18,7 +17,8 @@ def index():
 @dashboard_bp.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html', user=current_user)
+    products = Product.query.filter_by(user_id=current_user.id).all()
+    return render_template('dashboard.html', products=products)
 
 @dashboard_bp.route('/add-product', methods=['GET'])
 @login_required
@@ -38,7 +38,6 @@ def add_product():
     if not name or not isinstance(name, str):
         return jsonify({'error': 'Nazwa produktu jest wymagana.'}), 400
 
-    # Załaduj dozwolone nazwy
     allowed_products = set(load_ingredient_names())
     
     if name.strip() not in allowed_products:
@@ -101,42 +100,31 @@ def recipe_detail(recipe_id):
     if not recipe:
         return "Przepis nie istnieje", 404
 
-    # oczyszczone instrukcje – według wcześniejszego rozwiązania
     instructions = recipe['instructions'].replace('\\n', '\n')
     lines = [re.sub(r'^\d+\.\s*', '', line).strip() for line in instructions.split('\n')]
     recipe['instructions'] = '\\n'.join(lines)
 
     ingredients = load_recipe_ingredients(recipe_id)
 
-    query = recipe['title']
-    try:
-        resp = requests.get(
-            'https://pixabay.com/api/',
-            params={'key': API_KEY, 'q': query, 'image_type': 'photo', 'orientation': 'horizontal', 'lang': 'pl', 'per_page': 3}
-        )
-        data = resp.json()
-        hits = data.get('hits', [])
-        image_url = hits[0]['webformatURL'] if hits else url_for('static', filename='placeholder.jpg')
-    except Exception:
-        image_url = url_for('static', filename='placeholder.jpg')
+    recipe['image_url'] = get_pixabay_image_url(recipe['title'])
 
-    return render_template('recipe_detail.html', recipe=recipe, ingredients=ingredients, image_url=image_url)
+    return render_template('recipe_detail.html', recipe=recipe, ingredients=ingredients)
 
 @dashboard_bp.route('/recipes')
 @login_required
 def recipes():
-    # 1. Pobierz produkty aktualnego użytkownika (nazwy produktów)
     user_products = db.session.query(Product.name).filter_by(user_id=current_user.id).all()
-    user_products_set = set([p[0].lower() for p in user_products])  # małe litery dla porównania
+    user_products_set = set([p[0].lower() for p in user_products])
 
-    # 2. Wczytaj przepisy z CSV
     recipes = []
     with open('recipes.csv', newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
+            if not row['id'].isdigit():
+                continue
+            row['id'] = int(row['id'])
             recipes.append(row)
 
-    # 3. Wczytaj składniki przepisów z CSV
     recipe_ingredients = {}
     with open('recipe_ingredients.csv', newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
@@ -146,19 +134,15 @@ def recipes():
                 recipe_ingredients[rid] = []
             recipe_ingredients[rid].append(row['ingredient_name'].lower().strip())
 
-    # 4. Filtruj przepisy — wyświetl tylko te, których wszystkie składniki są dostępne
     filtered_recipes = []
     for r in recipes:
         rid = str(r['id'])
         ings = recipe_ingredients.get(rid, [])
-        # jeśli przepis nie ma składników, pomijamy go lub traktujemy jako niewykonalny
         if ings and all(ing in user_products_set for ing in ings):
+            r['image_url'] = get_pixabay_image_url(r['title'])
             filtered_recipes.append(r)
 
-    # 5. Dodaj pola do wyświetlenia (np. image_url itd.) jeśli chcesz
-    
     return render_template('recipes.html', recipes=filtered_recipes)
-
 
 @dashboard_bp.route('/products.html')
 @login_required
@@ -185,3 +169,27 @@ def get_ingredients():
 def notifications():
     return render_template('notifications.html')
 
+@dashboard_bp.route('/product/<name>')
+@login_required
+def product_detail(name):
+    name = name.strip().capitalize()
+
+    product = Product.query.filter_by(user_id=current_user.id, name=name).first_or_404()
+
+    nutrition_data = None
+    csv_path = os.path.join(current_app.root_path, 'ingredients.csv')
+    with open(csv_path, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['product'].strip().lower() == name.lower():
+                nutrition_data = {
+                    'calories': row.get('calories'),
+                    'protein': row.get('protein'),
+                    'fat': row.get('fat'),
+                    'carbs': row.get('carbs')
+                }
+                break
+
+    image_url = get_pixabay_image_url(name)
+
+    return render_template('product.html', product=product, nutrition=nutrition_data, image_url=image_url)

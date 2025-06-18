@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- pasek górny -->
   <header class="top-bar">
     <img src="{{ url_for('static', filename='img/SmartFridgelogo.jpg') }}" alt="Smart Fridge Logo" class="logo-img" />
     <div class="hamburger" onclick="toggleMenu()">☰</div>
@@ -22,16 +21,14 @@
   </header>
 
   <div class="container">
-    <!-- Nagłówek z tytułem i obrazkiem -->
     <div class="card header">
       <div>
         <h2>{{ recipe.title }}</h2>
-        <p>Czas: {{ recipe.prep_time + recipe.cook_time }} minut | Składników: {{ ingredients | length }}</p>
+        <p>Czas: {{ (recipe.prep_time | int) + (recipe.cook_time | int) }} minut | Składników: {{ ingredients | length }}</p>
       </div>
       <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}" class="recipe-img" />
     </div>
 
-    <!-- Składniki -->
     <div class="card">
   <div class="section-title">Składniki:</div>
   <ul>
@@ -46,9 +43,6 @@
     {% endfor %}
   </ul>
 </div>
-
-
-    <!-- Instrukcje -->
     <div class="card">
       <div class="section-title">Wykonanie:</div>
       <ol class="steps">
@@ -59,8 +53,6 @@
         {% endfor %}
       </ol>
     </div>
-
-    <!-- Podsumowanie -->
     <div class="footer">Smacznego!</div>
     <div class="footer">
       <a href="{{ url_for('dashboard.recipes') }}">

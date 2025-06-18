@@ -34,7 +34,11 @@ window.addEventListener('DOMContentLoaded', async () => {
       else if (diffDays <= 3) color = 'orange';
 
       div.classList.add(color);
-      div.innerHTML = `<strong>${p.name}</strong><br>${p.amount}g<br>${p.expiryDate}`;
+      div.innerHTML = `
+        <strong><a href="/product/${encodeURIComponent(p.name)}" style="color: inherit; text-decoration: none;">${p.name}</a></strong><br>
+        ${p.amount}g<br>
+        ${p.expiryDate}
+      `;
 
       const deleteBtn = document.createElement('button');
       deleteBtn.textContent = 'X';
@@ -44,6 +48,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
       extraPanel.appendChild(div);
     });
+
 
     applyFilters();
 

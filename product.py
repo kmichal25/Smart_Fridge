@@ -1,8 +1,9 @@
 import json
 import csv
 import sqlite3
+import requests
+from flask import url_for
 
-# Wczytaj produkty z pliku JSON
 def load_products():
     try:
         with open("products.json", "r", encoding="utf-8") as file:
@@ -10,25 +11,21 @@ def load_products():
     except FileNotFoundError:
         return []
 
-# Zapisz produkty do pliku JSON
 def save_products(products):
     with open("products.json", "w", encoding="utf-8") as file:
         json.dump(products, file, ensure_ascii=False, indent=4)
 
-# Ładowanie przepisów
 def load_recipes():
-    recipes = []
     with open('recipes.csv', newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
+        recipes = []
         for row in reader:
-            row['id'] = int(row['id'])  # Konwersja id na int
-            row['prep_time'] = int(row['prep_time'])
-            row['cook_time'] = int(row['cook_time'])
+            if not row['id'].isdigit():
+                continue  
+            row['id'] = int(row['id'])
             recipes.append(row)
     return recipes
 
-
-# Ładowanie składników
 def load_ingredients():
     ingredients = {}
     with open('recipe_ingredients.csv', newline='', encoding='utf-8') as csvfile:
@@ -104,3 +101,26 @@ def load_ingredient_names():
     return names
 
 
+API_KEY = '50809115-7134a20d0f08bf7c5cbb7fed6'
+
+def get_pixabay_image_url(query):
+    try:
+        resp = requests.get(
+            'https://pixabay.com/api/',
+            params={
+                'key': API_KEY,
+                'q': query,
+                'image_type': 'photo',
+                'orientation': 'horizontal',
+                'lang': 'pl',
+                'per_page': 3
+            }
+        )
+        data = resp.json()
+        hits = data.get('hits', [])
+        if hits:
+            return hits[0]['webformatURL']
+    except Exception:
+        pass
+    # fallback gdy nie ma obrazka
+    return url_for('static', filename='placeholder.jpg')
