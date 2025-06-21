@@ -16,7 +16,7 @@
       <a href="{{ url_for('dashboard.dashboard') }}"><button class="nav-btn">Twoja lodówka</button></a>
       <a href="{{ url_for('dashboard.add_product') }}"><button class="nav-btn">Dodaj produkt</button></a>
       <a href="{{ url_for('dashboard.recipes') }}"><button class="nav-btn">Dostępne przepisy</button></a>
-      <a href="{{ url_for('dashboard.notifications') }}"><button class="nav-btn">Powiadomienia</button></a>
+      <a href="{{ url_for('dashboard.notifications') }}"><button class="nav-btn">Powiadomienia<span id="notifBadge" class="badge" style="display: none;"></span></button></a>
       <a href="{{ url_for('auth.logout') }}"><button class="nav-btn logout">Wyloguj się</button></a>
     </nav>
   </header>

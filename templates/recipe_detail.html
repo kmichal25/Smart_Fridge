@@ -15,7 +15,7 @@
       <a href="{{ url_for('dashboard.dashboard') }}"><button class="nav-btn">Twoja lodówka</button></a>
       <a href="{{ url_for('dashboard.add_product') }}"><button class="nav-btn">Dodaj produkt</button></a>
       <a href="{{ url_for('dashboard.recipes') }}"><button class="nav-btn">Dostępne przepisy</button></a>
-      <a href="{{ url_for('dashboard.notifications') }}"><button class="nav-btn">Powiadomienia</button></a>
+      <a href="{{ url_for('dashboard.notifications') }}"><button class="nav-btn">Powiadomienia<span id="notifBadge" class="badge" style="display: none;"></span></button></a>
       <a href="{{ url_for('auth.logout') }}"><button class="nav-btn logout">Wyloguj się</button></a>
     </nav>
   </header>
@@ -65,6 +65,23 @@
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('open');
     }
+
+    window.addEventListener('DOMContentLoaded', () => {
+    const badge = document.getElementById('notifBadge');
+
+    fetch('/api/notifications/count')
+      .then(res => res.json())
+      .then(data => {
+        if (badge && data.count > 0) {
+          badge.innerText = data.count;
+          badge.style.display = 'inline-block';
+        } else {
+          badge.style.display = 'none';
+        }
+      })
+      .catch(err => console.error('Błąd ładowania powiadomień:', err));
+   });
+
   </script>
 
 </body>

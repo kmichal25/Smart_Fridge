@@ -85,3 +85,19 @@ function deleteProduct(name) {
     .then(() => location.reload())
     .catch(err => console.error('Błąd przy usuwaniu:', err));
 }
+window.addEventListener('DOMContentLoaded', () => {
+  const badge = document.getElementById('notifBadge');
+
+  fetch('/api/notifications/count')
+    .then(res => res.json())
+    .then(data => {
+      if (badge && data.count > 0) {
+        badge.innerText = data.count;
+        badge.style.display = 'inline-block';
+      } else {
+        badge.style.display = 'none';
+      }
+    })
+    .catch(err => console.error('Błąd ładowania powiadomień:', err));
+});
+

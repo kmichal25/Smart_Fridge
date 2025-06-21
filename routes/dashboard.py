@@ -6,7 +6,8 @@ import requests
 import re
 import csv
 import os
-
+from datetime import datetime, timedelta
+from product import get_pixabay_image_url
 
 dashboard_bp = Blueprint('dashboard', __name__)
 
@@ -43,7 +44,7 @@ def add_product():
     if name.strip() not in allowed_products:
         return jsonify({'error': 'Produkt nie znajduje się na liście dozwolonych produktów.'}), 400
 
-    if not isinstance(amount, (int, float)) or amount < 0:
+    if not isinstance(amount, (int, float)) or amount <= 0:
         return jsonify({'error': 'Ilość musi być liczbą nieujemną.'}), 400
     if not expiry_date or not isinstance(expiry_date, str):
         return jsonify({'error': 'Data ważności jest wymagana.'}), 400
@@ -175,7 +176,7 @@ def product_detail(name):
     name = name.strip().capitalize()
 
     product = Product.query.filter_by(user_id=current_user.id, name=name).first_or_404()
-
+    image_url = get_pixabay_image_url(product.name)
     nutrition_data = None
     csv_path = os.path.join(current_app.root_path, 'ingredients.csv')
     with open(csv_path, newline='', encoding='utf-8') as csvfile:
@@ -190,6 +191,21 @@ def product_detail(name):
                 }
                 break
 
-    image_url = get_pixabay_image_url(name)
-
     return render_template('product.html', product=product, nutrition=nutrition_data, image_url=image_url)
+
+    
+    
+
+@dashboard_bp.route('/api/notifications/count')
+@login_required
+def notification_count():
+    today = datetime.today().date()
+    soon = today + timedelta(days=3)
+
+    count = Product.query.filter(
+        Product.user_id == current_user.id,
+        Product.expiry_date <= soon.strftime("%Y-%m-%d")
+    ).count()
+
+    return jsonify({'count': count})
+

@@ -4,6 +4,8 @@ import sqlite3
 import requests
 from flask import url_for
 
+API_KEY = '50809115-7134a20d0f08bf7c5cbb7fed6'
+
 def load_products():
     try:
         with open("products.json", "r", encoding="utf-8") as file:
@@ -100,9 +102,6 @@ def load_ingredient_names():
             names.append(row['product'])
     return names
 
-
-API_KEY = '50809115-7134a20d0f08bf7c5cbb7fed6'
-
 def get_pixabay_image_url(query):
     try:
         resp = requests.get(
@@ -122,5 +121,5 @@ def get_pixabay_image_url(query):
             return hits[0]['webformatURL']
     except Exception:
         pass
-    # fallback gdy nie ma obrazka
-    return url_for('static', filename='placeholder.jpg')
+    return '/static/img/fridge.jpg'
+
