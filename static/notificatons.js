@@ -38,16 +38,16 @@ async function fetchNotifications() {
             notif.innerHTML = `
               <p><strong>${p.name}</strong> jest <span style="color:red;">przeterminowany</span>!</p>
               <div class="notification-buttons">
-                <button class="btn-primary" onclick="deleteProduct('${p.name}')">Usuń produkt</button>
-                <button class="btn-secondary" onclick="ignoreNotification('${p.name}', this)">Ignoruj</button>
+                <button class="btn-notification" onclick="deleteProduct('${p.name}')">Usuń produkt</button>
+                <button class="btn-ignore" onclick="ignoreNotification('${p.name}', this)">Tymczasowo ignoruj</button>
               </div>
             `;
           } else {
             notif.innerHTML = `
               <p><strong>${p.name}</strong> wkrótce się zepsuje (za ${diffDays} dni).</p>
               <div class="notification-buttons">
-              <button class="btn-primary" onclick="window.location.href='/recipes'">Zobacz dostępne przepisy</button>
-              <button class="btn-secondary" onclick="ignoreNotification('${p.name}', this)">Ignoruj</button>
+              <button class="btn-notification" onclick="window.location.href='/recipes'">Zobacz dostępne przepisy</button>
+              <button class="btn-ignore" onclick="ignoreNotification('${p.name}', this)">Tymczasowo ignoruj</button>
               </div>
             `;
           }

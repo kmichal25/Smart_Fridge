@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{{ recipe.title }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
 </head>
 <body>
 
   <header class="top-bar">
-    <img src="{{ url_for('static', filename='img/SmartFridgelogo.jpg') }}" alt="Smart Fridge Logo" class="logo-img" />
+
+    <a href="{{ url_for('dashboard.dashboard') }}">
+      <img src="{{ url_for('static', filename='img/SmartFridgelogo.jpg') }}" alt="Logo" class="logo-img" />
+    </a>
+
     <div class="hamburger" onclick="toggleMenu()">☰</div>
+
     <nav class="nav-links" id="navLinks">
       <a href="{{ url_for('dashboard.dashboard') }}"><button class="nav-btn">Twoja lodówka</button></a>
       <a href="{{ url_for('dashboard.add_product') }}"><button class="nav-btn">Dodaj produkt</button></a>
@@ -24,13 +30,14 @@
     <div class="card header">
       <div>
         <h2>{{ recipe.title }}</h2>
+        <strong>{{ recipe.description }}</strong>
         <p>Czas: {{ (recipe.prep_time | int) + (recipe.cook_time | int) }} minut | Składników: {{ ingredients | length }}</p>
       </div>
       <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}" class="recipe-img" />
     </div>
 
     <div class="card">
-  <div class="section-title">Składniki:</div>
+      <h2>Składniki:</h2>
   <ul>
     {% for ingredient in ingredients %}
       <li>{{ ingredient.name }}
@@ -44,7 +51,7 @@
   </ul>
 </div>
     <div class="card">
-      <div class="section-title">Wykonanie:</div>
+      <h2>Wykonanie:</h2>
       <ol class="steps">
         {% for step in recipe.instructions.split('\\n') %}
           <li>{{ step }}</li>
@@ -56,7 +63,7 @@
     <div class="footer">Smacznego!</div>
     <div class="footer">
       <a href="{{ url_for('dashboard.recipes') }}">
-        <button class="button">Inne przepisy</button>
+        <button class="btn-secondary">Inne przepisy</button>
       </a>
     </div>
   </div>
@@ -81,7 +88,6 @@
       })
       .catch(err => console.error('Błąd ładowania powiadomień:', err));
    });
-
   </script>
 
 </body>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Logowanie</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
 </head>
 <body>
   <div class="top-bar">
@@ -13,7 +14,7 @@
 
   <div class="login-wrapper">
     <div class="login-box">
-      <h2 class="login-title">Logowanie</h2>
+      <h2 class="global-title">Logowanie</h2>
       <form method="POST">
         {{ form.hidden_tag() }}
 
@@ -29,7 +30,7 @@
           <span style="color:red;">{{ error }}</span>
         {% endfor %}
 
-        {{ form.submit(class="login-btn") }}
+        {{ form.submit(class="btn-primary") }}
 
         <p class="login-footer">
           Nie masz jeszcze konta?<br />

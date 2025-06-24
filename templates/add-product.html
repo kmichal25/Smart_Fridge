@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dodaj produkt</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
 </head>
 <body>
   <header class="top-bar">
-    <img src="{{ url_for('static', filename='img/SmartFridgelogo.jpg') }}" alt="Logo" class="logo-img" />
+    <a href="{{ url_for('dashboard.dashboard') }}">
+      <img src="{{ url_for('static', filename='img/SmartFridgelogo.jpg') }}" alt="Logo" class="logo-img" />
+    </a>
 
     <div class="hamburger" onclick="toggleMenu()">☰</div>
 
@@ -23,7 +26,7 @@
 
   <div class="login-wrapper">
     <div class="login-box">
-      <div class="login-title">Dodaj produkt</div>
+      <div class="global-title">Dodaj produkt</div>
 
       <label for="productName">Dodaj nazwę produktu:</label>
       <input list="productsList" id="productName" name="productName" class="form-input" placeholder="np. Ser żółty" autocomplete="off" />
@@ -39,7 +42,7 @@
       <label for="expiryDate">Dodaj datę ważności:</label>
       <input type="date" id="expiryDate" class="form-input" />
 
-      <button class="login-btn" id="addProductBtn">Dodaj</button>
+      <button class="btn-primary" id="addProductBtn">Dodaj</button>
 
       <p id="responseMessage" style="margin-top: 10px;"></p>
     </div>

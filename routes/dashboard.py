@@ -193,9 +193,6 @@ def product_detail(name):
 
     return render_template('product.html', product=product, nutrition=nutrition_data, image_url=image_url)
 
-    
-    
-
 @dashboard_bp.route('/api/notifications/count')
 @login_required
 def notification_count():

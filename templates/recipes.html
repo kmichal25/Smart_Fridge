@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Przepisy</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
 </head>
 <body>
   <header class="top-bar">
-    <img src="{{ url_for('static', filename='img/SmartFridgelogo.jpg') }}" alt="Logo" class="logo-img" />
+    <a href="{{ url_for('dashboard.dashboard') }}">
+      <img src="{{ url_for('static', filename='img/SmartFridgelogo.jpg') }}" alt="Logo" class="logo-img" />
+    </a>
+
     <div class="hamburger" onclick="toggleMenu()">☰</div>
+
     <nav class="nav-links" id="navLinks">
       <a href="{{ url_for('dashboard.dashboard') }}"><button class="nav-btn">Twoja lodówka</button></a>
       <a href="{{ url_for('dashboard.add_product') }}"><button class="nav-btn">Dodaj produkt</button></a>
@@ -19,13 +24,34 @@
     </nav>
   </header>
 
-  <div class="recipe-section">
-    <h2>Przepisy</h2>
+  <div class="section">
+    <h2 class="section-title">Przepisy</h2>
+    
+    <div class="diet-filter-bar">
+      <label class="diet-filter-option">
+        <input type="checkbox" class="diet-filter" value="wegetariańska"> Wegetariańska
+      </label>
+      <label class="diet-filter-option">
+        <input type="checkbox" class="diet-filter" value="wegańska"> Wegańska
+      </label>
+      <label class="diet-filter-option">
+        <input type="checkbox" class="diet-filter" value="bezglutenowa"> Bezglutenowa
+      </label>
+      <label class="diet-filter-option">
+        <input type="checkbox" class="diet-filter" value="wysokobiałkowa"> Wysokobiałkowa
+      </label>
+      <label class="diet-filter-option">
+        <input type="checkbox" class="diet-filter" value="śródziemnomorska"> Śródziemnomorska
+      </label>
+    </div>    
+
     {% for recipe in recipes %}
     <div class="recipe-card">
       <div class="recipe-text">
         <h3>{{ recipe.title }}</h3>
-        <p>Czas: {{ (recipe.prep_time | int) + (recipe.cook_time | int) }} minut</p>  
+        <p style="font-size: 0.8em">{{ recipe.diets }}</p>
+        <p style="margin-top: 10px;">Czas: {{ (recipe.prep_time | int) + (recipe.cook_time | int) }} minut</p>
+        <br>  
         <a href="{{ url_for('dashboard.recipe_detail', recipe_id=recipe.id) }}">
           <button class="btn-secondary">Zobacz przepis</button>
         </a>
@@ -54,6 +80,22 @@
         })
         .catch(err => console.error('Błąd ładowania powiadomień:', err));
     });
+
+
+  document.querySelectorAll('.diet-filter').forEach(cb => {
+    cb.addEventListener('change', applyDietFilters);
+  });
+
+  function applyDietFilters() {
+    const activeFilters = Array.from(document.querySelectorAll('.diet-filter:checked')).map(cb => cb.value.toLowerCase());
+    const cards = document.querySelectorAll('.recipe-card');
+
+    cards.forEach(card => {
+      const dietText = card.querySelector('p').innerText.toLowerCase();
+      const matches = activeFilters.length === 0 || activeFilters.some(filter => dietText.includes(filter));
+      card.style.display = matches ? '' : 'none';
+    });
+  }
 
   </script>
 </body>

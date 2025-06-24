@@ -121,5 +121,5 @@ def get_pixabay_image_url(query):
             return hits[0]['webformatURL']
     except Exception:
         pass
-    return '/static/img/fridge.jpg'
+    return '/static/img/default-recipe-photo.jpg'
 
